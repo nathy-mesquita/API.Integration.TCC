@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
+    <RootNamespace>API.Integration.TCC.Domain</RootNamespace>
+    <AssemblyName>API.Integration.TCC.Domain</AssemblyName>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <LangVersion>9</LangVersion>
+</PropertyGroup>
 
 </Project>

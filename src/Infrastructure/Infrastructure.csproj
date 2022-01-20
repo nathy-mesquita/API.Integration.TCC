@@ -2,10 +2,27 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
+    <AssemblyName>API.Integration.TCC.Infrastructure</AssemblyName>
+    <RootNamespace>API.Integration.TCC.Infrastructure</RootNamespace>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <LangVersion>9</LangVersion>
+</PropertyGroup>
+
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="FluentValidation" Version="10.3.6" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.6" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
 </Project>
