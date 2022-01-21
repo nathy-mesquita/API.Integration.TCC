@@ -94,5 +94,38 @@ namespace API.Integration.TCC.Domain.Entities
         /// </summary>
         /// <value></value>
         public List<ProjectTCCComments> Comments { get; private set; }
+
+
+        public void Cancel()
+        {
+            if(Status == ProjectStatusEnum.InProgress || Status == ProjectStatusEnum.Created)
+            {
+                Status = ProjectStatusEnum.Cancelled;
+            }
+        }
+        public void Start()
+        {
+            if(Status == ProjectStatusEnum.Created)
+            {
+                Status = ProjectStatusEnum.InProgress;
+                StartedAt = DateTime.Now;
+            }
+        }
+        public void Finish()
+        {
+            if(Status == ProjectStatusEnum.InProgress)
+            {
+                Status = ProjectStatusEnum.Finished;
+                FinishedAt = DateTime.Now;
+            }
+        }
+
+        public void Update(string title, string description, int idTeacher, DateTime? defenseForecast)
+        {
+            Title = title;
+            Description = description;
+            IdTeacher = idTeacher;
+            DefenseForecast = defenseForecast;
+        }
     }
 }
