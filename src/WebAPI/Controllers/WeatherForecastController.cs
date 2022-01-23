@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace WebAPI.Controllers
+namespace API.Integration.TCC.WebAP.Controllers
 {
     [ApiController]
     [Route("[controller]")]

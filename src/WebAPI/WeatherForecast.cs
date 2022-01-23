@@ -1,6 +1,6 @@
 using System;
 
-namespace WebAPI
+namespace API.Integration.TCC.WebAP
 {
     public class WeatherForecast
     {
