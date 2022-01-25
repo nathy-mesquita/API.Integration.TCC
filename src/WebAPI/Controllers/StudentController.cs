@@ -2,6 +2,7 @@ using MediatR;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace API.Integration.TCC.WebAP.Controllers
 {
@@ -10,8 +11,14 @@ namespace API.Integration.TCC.WebAP.Controllers
     public class StudentController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public StudentController(IMediator mediator) => _mediator = mediator;
-    
+        private readonly ILogger<StudentController> _logger;
+
+        public StudentController(IMediator mediator, ILogger<StudentController> logger)
+        {
+            _mediator = mediator;
+            _logger = logger;
+        }
+
         //GET api/Student/matricula
         /// <summary>
         /// Busca um Aluno por matricula 

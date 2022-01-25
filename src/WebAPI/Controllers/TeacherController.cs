@@ -1,7 +1,8 @@
 using MediatR;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Integration.TCC.WebAP.Controllers
 {
@@ -10,7 +11,13 @@ namespace API.Integration.TCC.WebAP.Controllers
     public class TeacherController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public TeacherController(IMediator mediator) => _mediator = mediator;
+        private readonly ILogger<TeacherController> _logger;
+
+        public TeacherController(IMediator mediator, ILogger<TeacherController> logger)
+        {
+            _mediator = mediator;
+            _logger = logger;
+        }
 
         // GET: api/projects?query=netCore
         /// <summary>

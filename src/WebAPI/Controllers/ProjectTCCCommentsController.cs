@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace API.Integration.TCC.WebAP.Controllers
 {
@@ -10,9 +11,15 @@ namespace API.Integration.TCC.WebAP.Controllers
     public class ProjectTCCCommentsController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public ProjectTCCCommentsController(IMediator mediator) => _mediator = mediator;
+        private readonly ILogger<ProjectTCCCommentsController> _logger;
 
-        
+        public ProjectTCCCommentsController(IMediator mediator, ILogger<ProjectTCCCommentsController> logger)
+        {
+            _mediator = mediator;
+            _logger = logger;
+        }
+
+
         // GET api/ProjectTCCComments/id/project
         /// <summary>
         /// Busca dos comentários pelo Id do projeto

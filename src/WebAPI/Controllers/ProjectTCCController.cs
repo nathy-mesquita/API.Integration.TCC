@@ -2,6 +2,7 @@ using MediatR;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace API.Integration.TCC.WebAP.Controllers
 {
@@ -10,8 +11,14 @@ namespace API.Integration.TCC.WebAP.Controllers
     public class ProjectTCCController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public ProjectTCCController(IMediator mediator) => _mediator = mediator;
-    
+        private readonly ILogger<ProjectTCCController> _logger;
+
+        public ProjectTCCController(IMediator mediator, ILogger<ProjectTCCController> logger)
+        {
+            _mediator = mediator;
+            _logger = logger;
+        }
+
         // GET: api/projects?query=netCore
         /// <summary>
         /// Busca todos os projetos
