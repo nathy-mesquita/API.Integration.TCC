@@ -27,11 +27,11 @@ body {
 
         .swagger-ui .topbar .download-url-wrapper .select-label select,
         .swagger-ui .response-control-media-type--accept-controller select {
-            border-color: #bf048d;
+            border-color: #ed4407;
         }
 
     .swagger-ui .topbar-wrapper img {
-        content: url('https://image.flaticon.com/icons/png/512/2219/2219609.png');
+        content: url('https://unicarioca.edu.br/sites/default/files/marca.png');
         height: 24px;
     }
 
