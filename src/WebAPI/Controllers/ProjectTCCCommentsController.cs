@@ -12,30 +12,14 @@ namespace API.Integration.TCC.WebAP.Controllers
         private readonly IMediator _mediator;
         public ProjectTCCCommentsController(IMediator mediator) => _mediator = mediator;
 
-        // GET: api/projects?query=netCore
-        /// <summary>
-        /// Busca todos os projetos cadastrados
-        /// </summary>
-        /// <param name="query"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Authorize(Roles = Roles.Administrador + "," + Roles.Student + "," + Roles.Teacher)]
-        public async Task<IActionResult> Get(string query)
-        {
-            // var getAllProjectsQuery = new GetAllProjectsQuery(query);
-            // var projects = await _mediator.Send(getAllProjectsQuery);
-            // if(projects is null) return NotFound();
-            // return Ok(projects);
-            return Ok();
-        }
         
-        // GET api/ProjectTCCComments/id
+        // GET api/ProjectTCCComments/id/project
         /// <summary>
         /// Busca dos comentários pelo Id do projeto
         /// </summary>
         /// <param name="id">Identificador único do projeto</param>
         /// <returns></returns>
-        [HttpGet("{id}")]
+        [HttpGet("{id}/project")]
         [Authorize(Roles = Roles.Administrador + "," + Roles.Student + "," + Roles.Teacher)]
         public async Task<IActionResult> GetByIdProject(int id)
         {
