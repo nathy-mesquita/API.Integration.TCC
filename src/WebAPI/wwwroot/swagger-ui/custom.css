@@ -16,7 +16,7 @@ body {
     }
 
     .swagger-ui .topbar a::after {
-        content: "Nathaly Swagger";
+        content: "Swagger";
         margin-left: 8px;
         font-size: 14px;
         font-style: italic;

@@ -84,7 +84,7 @@ namespace API.Integration.TCC.WebAP
             app.UseSwagger();
             app.UseSwaggerUI(c => 
             {
-                c.DocumentTitle = "API Integration TCC | Nathaly & Misael Swagger";
+                c.DocumentTitle = "API Integration TCC | Swagger";
                 c.InjectStylesheet("/swagger-ui/custom.css");
                 c.InjectJavascript("/swagger-ui/custom.js");
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Version 1");
