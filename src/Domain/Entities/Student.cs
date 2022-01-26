@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace API.Integration.TCC.Domain.Entities
 {
@@ -23,6 +24,9 @@ namespace API.Integration.TCC.Domain.Entities
 
             Course = course;
             Enrollment = enrollment;
+            
+            Comments = new List<ProjectTCCComments>();
+            OwnedProject = new ProjectTCC();
         }
 
         /// <summary>
@@ -36,5 +40,18 @@ namespace API.Integration.TCC.Domain.Entities
         /// </summary>
         /// <value></value>
         public string? Enrollment { get; private set; }
+        
+        /// <summary>
+        /// Comentários
+        /// </summary>
+        /// <value></value>
+        public List<ProjectTCCComments>? Comments { get; private set; }
+
+
+        /// <summary>
+        /// Dono do Projeto
+        /// </summary>
+        /// <value></value>
+        public ProjectTCC? OwnedProject { get; private set; }
     }
 }

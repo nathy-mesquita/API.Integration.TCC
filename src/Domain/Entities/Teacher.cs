@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace API.Integration.TCC.Domain.Entities
 {
@@ -24,6 +25,9 @@ namespace API.Integration.TCC.Domain.Entities
             Advisor = false;
             Specialty = specialty;
             SubjectsTaught = subjectsTaught;
+
+            Comments = new List<ProjectTCCComments>();
+            AdvisorProject = new List<ProjectTCC>();
         }
         /// <summary>
         /// Se é Orientador
@@ -42,5 +46,17 @@ namespace API.Integration.TCC.Domain.Entities
         /// </summary>
         /// <value></value>
         public string[]? SubjectsTaught { get; private set; }
+
+        /// <summary>
+        /// Comentários
+        /// </summary>
+        /// <value></value>
+        public List<ProjectTCCComments>? Comments { get; private set; }
+
+        /// <summary>
+        /// Orientador do Projeto
+        /// </summary>
+        /// <value></value>
+        public List<ProjectTCC>? AdvisorProject { get; private set; }
     }
 }

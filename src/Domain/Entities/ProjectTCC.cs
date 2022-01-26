@@ -6,6 +6,9 @@ namespace API.Integration.TCC.Domain.Entities
 {
     public class ProjectTCC : BaseEntity
     {
+        public ProjectTCC()
+        {
+        }
         public ProjectTCC(string title,
                             string description,
                             int idStudent,
@@ -23,6 +26,7 @@ namespace API.Integration.TCC.Domain.Entities
             Status = ProjectStatusEnum.Created;
             Comments = new List<ProjectTCCComments>();
         }
+
         /// <summary>
         /// Título
         /// </summary>
@@ -93,7 +97,8 @@ namespace API.Integration.TCC.Domain.Entities
         /// Comentários
         /// </summary>
         /// <value></value>
-        public List<ProjectTCCComments> Comments { get; private set; }
+        public List<ProjectTCCComments>? Comments { get; private set; }
+
 
 
         public void Cancel()
@@ -119,7 +124,6 @@ namespace API.Integration.TCC.Domain.Entities
                 FinishedAt = DateTime.Now;
             }
         }
-
         public void Update(string title, string description, int idTeacher, DateTime? defenseForecast)
         {
             Title = title;
@@ -127,5 +131,6 @@ namespace API.Integration.TCC.Domain.Entities
             IdTeacher = idTeacher;
             DefenseForecast = defenseForecast;
         }
+        
     }
 }
