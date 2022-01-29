@@ -1,8 +1,8 @@
 using MediatR;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Integration.TCC.WebAP.Controllers
 {
@@ -19,6 +19,23 @@ namespace API.Integration.TCC.WebAP.Controllers
             _logger = logger;
         }
 
+        //GET api/Student?query=netCore
+        /// <summary>
+        /// Busca todos os alunos cadastrados
+        /// </summary>
+        /// <param name="query">query</param>
+        /// <returns>Lista de Alunos</returns>
+        [HttpGet]
+        [Authorize(Roles = Roles.Administrador + "," + Roles.Student + "," + Roles.Teacher)]
+        public async Task<IActionResult> Get(string query)
+        {
+           // var getAllProjectsQuery = new GetAllProjectsQuery(query);
+            // var projects = await _mediator.Send(getAllProjectsQuery);
+            // if(projects is null) return NotFound();
+            //return Ok(projects);
+            return Ok();
+        } 
+
         //GET api/Student/matricula
         /// <summary>
         /// Busca um Aluno por matricula 
@@ -34,7 +51,7 @@ namespace API.Integration.TCC.WebAP.Controllers
             // if(user is null) return NotFound();
             //return Ok(user); //200
             return Ok(); 
-        }   
+        }  
 
         // POS api/Student
         /// <summary>
@@ -51,7 +68,6 @@ namespace API.Integration.TCC.WebAP.Controllers
             // return CreatedAtAction(nameof(GetById), new { id = id }, command);
             return Ok();
         }
-
 
         //PUT api/Student/login
         /// <summary>

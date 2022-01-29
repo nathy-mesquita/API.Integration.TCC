@@ -23,8 +23,8 @@ namespace API.Integration.TCC.WebAP.Controllers
         /// <summary>
         /// Busca todos os professores cadastrados
         /// </summary>
-        /// <param name="query"></param>
-        /// <returns></returns>
+        /// <param name="query">query</param>
+        /// <returns>Lista de professores</returns>
         [HttpGet]
         [Authorize(Roles = Roles.Administrador + "," + Roles.Student + "," + Roles.Teacher)]
         public async Task<IActionResult> Get(string query)
