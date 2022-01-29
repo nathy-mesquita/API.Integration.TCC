@@ -9,15 +9,20 @@ namespace API.Integration.TCC.Infrastructure.Persistence
         public IntegrationTCCDbContext(DbContextOptions<IntegrationTCCDbContext> options): base(options)
         {
         }
-        public DbSet<ProjectTCCRepository>? ProjectsTCC { get; set; }
-        public DbSet<StudentRepository>? Students { get; set; }
-        public DbSet<TeacherRepository>? Teachers { get; set; }
-        public DbSet<ProjectTCCCommentsRepository>? ProjectTCCComments { get; set; }
+        public DbSet<ProjectTCCRepository> ProjectsTCC => Set<ProjectTCCRepository>();
+        public DbSet<StudentRepository> Students => Set<StudentRepository>();
+        public DbSet<TeacherRepository> Teachers => Set<TeacherRepository>();
+        public DbSet<ProjectTCCCommentsRepository> ProjectTCCComments => Set<ProjectTCCCommentsRepository>();
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {            
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        => optionsBuilder
+            .UseSqlServer(
+                @"Server=(localdb)\mssqllocaldb;Database=EFNullableReferenceTypes;Trusted_Connection=True");
     }
 }
