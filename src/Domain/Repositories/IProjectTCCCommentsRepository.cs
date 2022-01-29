@@ -6,7 +6,7 @@ namespace API.Integration.TCC.Domain.Repositories
 {
     public interface IProjectTCCCommentsRepository
     {
-        Task<List<ProjectTCCComments>> GetAllAsync();
+        Task<List<ProjectTCCComments>> GetAsyncByProjectTCC(int idProjectTCC);
         Task AddAsync(ProjectTCCComments comments);
         Task SaveChangesAsync();
     }

@@ -7,8 +7,8 @@ namespace API.Integration.TCC.Domain.Repositories
     public interface IStudentRepository
     {
         Task<List<Student>> GetAllAsync();
-        Task<Student> GetByIdAsync(int id);
+        Task<Student> GetByEnrollmentAsync(string enrollment);
         Task<Student> GetUserByEmailAndPasswordAsync(string email, string passwordHash);
-        Task  AddAsync(Student user);
+        Task  AddAsync(Student student);
     }
 }
