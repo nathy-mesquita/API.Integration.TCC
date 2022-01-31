@@ -1,5 +1,6 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using API.Integration.TCC.Domain.Entities;
 using API.Integration.TCC.Domain.Repositories;
 
@@ -11,34 +12,39 @@ namespace API.Integration.TCC.Infrastructure.Persistence.Repositories
 
         public ProjectTCCRepository(IntegrationTCCDbContext dbContext) => _dbContext = dbContext;
 
-        public Task AddAsync(ProjectTCC projectTCC)
+        public async Task AddAsync(ProjectTCC projectTCC)
         {
-            throw new System.NotImplementedException();
+            await _dbContext.ProjectsTCC.AddAsync(projectTCCResult);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public Task AddCommentAsync(ProjectTCCComments projectTCCComments)
+        public async Task AddCommentAsync(ProjectTCCComments projectTCCComments)
         {
-            throw new System.NotImplementedException();
+            await _dbContext.ProjectTCCComments.AddAsync(projectTCCComments);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public Task<List<ProjectTCC>> GetAllAsync()
+        public async Task<List<ProjectTCC>> GetAllAsync()
         {
-            throw new System.NotImplementedException();
+            return await _dbContext.ProjectsTCC.ToListAsync<ProjectTCC>();
         }
 
-        public Task<ProjectTCC> GetByIdAsync(int id)
+        public async Task<ProjectTCC> GetByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            return await _dbContext.ProjectsTCC.SingleOrDefaultAsync(p => p.Id == id);
         }
 
-        public Task<ProjectTCC> GetDetailsByIdAsync(int id)
+        public async Task<ProjectTCC> GetDetailsByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            return await _dbContext.ProjectsTCC
+                .Include(p => p.Student)
+                .Include(p => p.Teacher) 
+                .SingleOrDefaultAsync(p => p.Id == id);
         }
 
-        public Task SaveChangesAsync()
+        public async Task SaveChangesAsync()
         {
-            throw new System.NotImplementedException();
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

@@ -1,5 +1,6 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using API.Integration.TCC.Domain.Entities;
 using API.Integration.TCC.Domain.Repositories;
 
@@ -9,21 +10,23 @@ namespace API.Integration.TCC.Infrastructure.Persistence.Repositories
     {
         private readonly IntegrationTCCDbContext _dbContext;
 
-        public ProjectTCCCommentsRepository(IntegrationTCCDbContext dbContext) => _dbContext = dbContext;
+        public ProjectTCCCommentsRepository(IntegrationTCCDbContext dbContext) 
+            => _dbContext = dbContext;
 
-        public Task AddAsync(ProjectTCCComments comments)
+        public async Task AddAsync(ProjectTCCComments comments)
         {
-            throw new System.NotImplementedException();
+            await _dbContext.ProjectTCCComments.AddAsync(comments);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public Task<List<ProjectTCCComments>> GetAllAsync()
+        public async Task<List<ProjectTCCComments>> GetAsyncByProjectTCC(int idProjectTCC)
         {
-            throw new System.NotImplementedException();
+            return await _dbContext.ProjectTCCComments.SingleOrDefaultAsync(p => p.IdProjectTCC == id);
         }
 
-        public Task SaveChangesAsync()
+        public async Task SaveChangesAsync()
         {
-            throw new System.NotImplementedException();
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

@@ -8,26 +8,28 @@ namespace API.Integration.TCC.Infrastructure.Persistence.Repositories
     public class TeacherRepository : ITeacherRepository
     {
         private readonly IntegrationTCCDbContext _dbContext;
-        public TeacherRepository(IntegrationTCCDbContext dbContext) => _dbContext = dbContext;
+        public TeacherRepository(IntegrationTCCDbContext dbContext) 
+            => _dbContext = dbContext;
 
-        public Task AddAsync(Teacher user)
+        public async Task AddAsync(Teacher teacher)
         {
-            throw new System.NotImplementedException();
+            await _dbContext.Students.AddAsync(teacher);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public Task<List<Teacher>> GetAllAsync()
+        public async Task<List<Teacher>> GetAllAsync()
         {
-            throw new System.NotImplementedException();
+            return await _dbContext.Teacher.ToListAsync<Student>();
         }
 
-        public Task<Teacher> GetByIdAsync(int id)
+        public async Task<Teacher> GetByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            return await _dbContext.Teacher.SingleOrDefaultAsync(t => t.Id == id);
         }
 
-        public Task<Teacher> GetUserByEmailAndPasswordAsync(string email, string passwordHash)
+        public async Task<Teacher> GetUserByEmailAndPasswordAsync(string email, string passwordHash)
         {
-            throw new System.NotImplementedException();
+            return await _dbContext.Teacher.SingleAsync(t => t.Email == email && t.Password == passwordHash);
         }
     }
 }

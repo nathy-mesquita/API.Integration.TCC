@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Integration.TCC.Domain.Entities;
 using API.Integration.TCC.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Integration.TCC.Infrastructure.Persistence.Repositories
 {
@@ -11,24 +12,25 @@ namespace API.Integration.TCC.Infrastructure.Persistence.Repositories
 
         public StudentRepository(IntegrationTCCDbContext dbContext) => _dbContext = dbContext;
 
-        public Task AddAsync(Student user)
+        public async Task AddAsync(Student student)
         {
-            throw new System.NotImplementedException();
+            await _dbContext.Students!.AddAsync(student);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public Task<List<Student>> GetAllAsync()
+        public async Task<List<Student>> GetAllAsync()
         {
-            throw new System.NotImplementedException();
+            return await _dbContext.Students.ToListAsync<Student>();
         }
 
-        public Task<Student> GetByIdAsync(int id)
+        public async Task<Student> GetByEnrollmentAsync(string enrollment)
         {
-            throw new System.NotImplementedException();
+            return await _dbContext.Students.SingleOrDefaultAsync(s => s.Enrollment == enrollment);
         }
 
-        public Task<Student> GetUserByEmailAndPasswordAsync(string email, string passwordHash)
+        public async Task<Student> GetUserByEmailAndPasswordAsync(string email, string passwordHash)
         {
-            throw new System.NotImplementedException();
+            return await _dbContext.Student.SingleAsync(s => s.Email == email && s.Password == passwordHash);
         }
     }
 }
