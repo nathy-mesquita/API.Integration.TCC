@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using API.Integration.TCC.Domain.Entities;
 using API.Integration.TCC.Domain.Repositories;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace API.Integration.TCC.Infrastructure.Persistence.Repositories
 {
@@ -16,7 +16,7 @@ namespace API.Integration.TCC.Infrastructure.Persistence.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Task<List<ProjectTCCComments>> GetAllAsync()
+        public Task<List<ProjectTCCComments>> GetAsyncByProjectTCC(int idProjectTCC)
         {
             throw new System.NotImplementedException();
         }
