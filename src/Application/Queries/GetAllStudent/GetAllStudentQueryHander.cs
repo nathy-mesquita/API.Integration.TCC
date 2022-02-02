@@ -1,5 +1,4 @@
-﻿using API.Integration.TCC.Application.Models.ViewModels;
-using API.Integration.TCC.Domain.Repositories;
+﻿using API.Integration.TCC.Domain.Repositories;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
