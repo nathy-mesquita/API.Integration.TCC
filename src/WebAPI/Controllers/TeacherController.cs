@@ -1,8 +1,12 @@
+using API.Integration.TCC.Application.Commands.CreateTeacher;
+using API.Integration.TCC.Application.Commands.LoginTeacher;
+using API.Integration.TCC.Application.Queries.GetAllTeacher;
+using API.Integration.TCC.Application.Queries.GetTeacherById;
 using MediatR;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
 
 namespace API.Integration.TCC.WebAP.Controllers
 {
@@ -19,7 +23,6 @@ namespace API.Integration.TCC.WebAP.Controllers
             _logger = logger;
         }
 
-        // GET: api/projects?query=netCore
         /// <summary>
         /// Busca todos os professores cadastrados
         /// </summary>
@@ -29,31 +32,27 @@ namespace API.Integration.TCC.WebAP.Controllers
         [Authorize(Roles = Roles.Administrador + "," + Roles.Student + "," + Roles.Teacher)]
         public async Task<IActionResult> Get(string query)
         {
-            // var getAllProjectsQuery = new GetAllProjectsQuery(query);
-            // var projects = await _mediator.Send(getAllProjectsQuery);
-            // if(projects is null) return NotFound();
-            //return Ok(projects);
-            return Ok();
+            var getAllTeachertQuery = new GetAllTeacherQuery(query);
+            var teachers = await _mediator.Send(getAllTeachertQuery);
+            if (teachers is null) return NotFound();
+            return Ok(teachers);
         }
 
-        //GET api/Teacher/id
         /// <summary>
         /// Busca um Professor por identificador 
         /// </summary>
         /// <param name="id">Identificador</param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        [Authorize(Roles= Roles.Administrador)]
+        [Authorize(Roles = Roles.Administrador)]
         public async Task<IActionResult> GetById(int id)
         {
-            // var query = new GetUserQuery(id);
-            // var user = await _mediator.Send(query);
-            // if(user is null) return NotFound();
-            //return Ok(user); //200
-            return Ok(); 
-        }   
+            var query = new GetTeacherByIdQuery(id);
+            var teacher = await _mediator.Send(query);
+            if (teacher is null) return NotFound();
+            return Ok(teacher);
+        }
 
-        // POS api/Teacher
         /// <summary>
         /// Cria um cadastro de professor
         /// </summary>
@@ -61,16 +60,13 @@ namespace API.Integration.TCC.WebAP.Controllers
         /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Post([FromBody] string command)
+        public async Task<IActionResult> Post([FromBody] CreateTeacherCommand command)
         {
-            //[FromBody] CreateUserCommand command
-            // var id = await _mediator.Send(command);
-            // return CreatedAtAction(nameof(GetById), new { id = id }, command);
-            return Ok();
+            var id = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetById), new { id = id }, command);
         }
 
 
-        //PUT api/Teacher/login
         /// <summary>
         /// Login
         /// </summary>
@@ -78,13 +74,11 @@ namespace API.Integration.TCC.WebAP.Controllers
         /// <returns></returns>
         [HttpPut("login")]
         [AllowAnonymous]
-        public async Task<IActionResult> Put([FromBody] string command)
+        public async Task<IActionResult> Put([FromBody] LoginTeacherCommand command)
         {
-            //[FromBody] LoginUserCommand command
-            // var loginUserViewModel = await _mediator.Send(command);
-            // if (loginUserViewModel is null) return BadRequest();
-            // return Ok(loginUserViewModel);
-            return Ok();
+            var loginTeacherViewModel = await _mediator.Send(command);
+            if (loginTeacherViewModel is null) return BadRequest();
+            return Ok(loginTeacherViewModel);
         }
     }
 }
