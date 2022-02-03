@@ -1,11 +1,12 @@
+using API.Integration.TCC.WebAP.Filters;
+using FluentValidation;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Microsoft.OpenApi.Models;
-using API.Integration.TCC.WebAP.Filters;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace API.Integration.TCC.WebAP
 {
@@ -18,8 +19,7 @@ namespace API.Integration.TCC.WebAP
                     {
                         options.JsonSerializerOptions.IgnoreNullValues = true;
                     });
-                    //.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateUserCommandValidator>());
-            
+            //AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateUserCommandValidator>());
             services.AddHealthChecks();
         }
 
@@ -82,7 +82,7 @@ namespace API.Integration.TCC.WebAP
         {
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
-            app.UseSwaggerUI(c => 
+            app.UseSwaggerUI(c =>
             {
                 c.DocumentTitle = "API Integration TCC | Swagger";
                 c.InjectStylesheet("/swagger-ui/custom.css");
