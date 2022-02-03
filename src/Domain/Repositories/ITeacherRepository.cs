@@ -1,6 +1,6 @@
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using API.Integration.TCC.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace API.Integration.TCC.Domain.Repositories
 {
@@ -9,6 +9,6 @@ namespace API.Integration.TCC.Domain.Repositories
         Task<List<Teacher>> GetAllAsync();
         Task<Teacher> GetByIdAsync(int id);
         Task<Teacher> GetUserByEmailAndPasswordAsync(string email, string passwordHash);
-        Task  AddAsync(Teacher teacher);
+        Task AddAsync(Teacher teacher);
     }
 }
