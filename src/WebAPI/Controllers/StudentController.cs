@@ -1,8 +1,13 @@
+using API.Integration.TCC.Application.Commands.CreateStudent;
+using API.Integration.TCC.Application.Commands.LoginStudent;
+using API.Integration.TCC.Application.Queries.GetAllStudent;
+using API.Integration.TCC.Application.Queries.GetStudentByEnrollment;
 using MediatR;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Threading.Tasks;
 
 namespace API.Integration.TCC.WebAP.Controllers
 {
@@ -19,7 +24,6 @@ namespace API.Integration.TCC.WebAP.Controllers
             _logger = logger;
         }
 
-        //GET api/Student?query=netCore
         /// <summary>
         /// Busca todos os alunos cadastrados
         /// </summary>
@@ -29,31 +33,27 @@ namespace API.Integration.TCC.WebAP.Controllers
         [Authorize(Roles = Roles.Administrador + "," + Roles.Student + "," + Roles.Teacher)]
         public async Task<IActionResult> Get(string query)
         {
-           // var getAllProjectsQuery = new GetAllProjectsQuery(query);
-            // var projects = await _mediator.Send(getAllProjectsQuery);
-            // if(projects is null) return NotFound();
-            //return Ok(projects);
-            return Ok();
-        } 
+            var getAllStudentQuery = new GetAllStudentQuery(query);
+            var students = await _mediator.Send(getAllStudentQuery);
+            if (students is null) return NotFound();
+            return Ok(students);
+        }
 
-        //GET api/Student/matricula
         /// <summary>
         /// Busca um Aluno por matricula 
         /// </summary>
         /// <param name="matricula">Matricula</param>
         /// <returns></returns>
         [HttpGet("{matricula}")]
-        [Authorize(Roles= Roles.Administrador)]
-        public async Task<IActionResult> GetByEnrollment(string matricula)
+        [Authorize(Roles = Roles.Administrador)]
+        public async Task<IActionResult> GetByEnrollment(Guid matricula)
         {
-            // var query = new GetUserQuery(id);
-            // var user = await _mediator.Send(query);
-            // if(user is null) return NotFound();
-            //return Ok(user); //200
-            return Ok(); 
-        }  
+            var query = new GetStudentByEnrollmentQuery(matricula);
+            var student = await _mediator.Send(query);
+            if (student is null) return NotFound();
+            return Ok(student);
+        }
 
-        // POS api/Student
         /// <summary>
         /// Cria um cadastro de Aluno
         /// </summary>
@@ -61,15 +61,12 @@ namespace API.Integration.TCC.WebAP.Controllers
         /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Post([FromBody] string command)
+        public async Task<IActionResult> Post([FromBody] CreateStudentCommand command)
         {
-            //[FromBody] CreateUserCommand command
-            // var id = await _mediator.Send(command);
-            // return CreatedAtAction(nameof(GetById), new { id = id }, command);
-            return Ok();
+            var enrollment = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetByEnrollment), new { enrollment = enrollment }, command);
         }
 
-        //PUT api/Student/login
         /// <summary>
         /// Login
         /// </summary>
@@ -77,13 +74,11 @@ namespace API.Integration.TCC.WebAP.Controllers
         /// <returns></returns>
         [HttpPut("login")]
         [AllowAnonymous]
-        public async Task<IActionResult> Put([FromBody] string command)
+        public async Task<IActionResult> Put([FromBody] LoginStudentCommand command)
         {
-            //[FromBody] LoginUserCommand command
-            // var loginUserViewModel = await _mediator.Send(command);
-            // if (loginUserViewModel is null) return BadRequest();
-            // return Ok(loginUserViewModel);
-            return Ok();
+            var loginStudentViewModel = await _mediator.Send(command);
+            if (loginStudentViewModel is null) return BadRequest();
+            return Ok(loginStudentViewModel);
         }
     }
 }
