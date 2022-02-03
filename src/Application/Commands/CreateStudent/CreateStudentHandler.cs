@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace API.Integration.TCC.Application.Commands.CreateStudent
 {
-    public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand, Guid>
+    public class CreateStudentHandler : IRequestHandler<CreateStudentCommand, Guid>
     {
         private readonly IStudentRepository _studentRepository;
         private readonly IAuthService _authService;
-        private readonly ILogger<CreateStudentCommandHandler> _logger;
+        private readonly ILogger<CreateStudentHandler> _logger;
 
-        public CreateStudentCommandHandler(IStudentRepository studentRepository, IAuthService authService, ILogger<CreateStudentCommandHandler> logger)
+        public CreateStudentHandler(IStudentRepository studentRepository, IAuthService authService, ILogger<CreateStudentHandler> logger)
         {
             _studentRepository = studentRepository;
             _authService = authService;
@@ -28,7 +28,7 @@ namespace API.Integration.TCC.Application.Commands.CreateStudent
             var passwordHash = _authService.ComputeSha256Hash(request.Password);
             var student = new Student(request.FullName, request.Email, passwordHash, request.Course, request.BirthDate);
             await _studentRepository.AddAsync(student);
-            _logger.LogInformation($"Aluno criado = {student}");
+            _logger.LogInformation($"Aluno criado Student= {student}");
             return student.Enrollment;
         }
     }

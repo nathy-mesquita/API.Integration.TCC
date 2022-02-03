@@ -3,9 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace API.Integration.TCC.Application.Commands.CreateStudent
 {
-    public class CreateStudentCommandValidator : AbstractValidator<CreateStudentCommand>
+    public class CreateStudentValidator : AbstractValidator<CreateStudentCommand>
     {
-        public CreateStudentCommandValidator()
+        public CreateStudentValidator()
         {
             RuleFor(s => s.Email)
                 .EmailAddress()
