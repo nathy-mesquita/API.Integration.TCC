@@ -1,28 +1,26 @@
-using System.Reflection;
-using Microsoft.EntityFrameworkCore;
+using API.Integration.TCC.Domain.Entities;
 using API.Integration.TCC.Infrastructure.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace API.Integration.TCC.Infrastructure.Persistence
 {
     public class IntegrationTCCDbContext : DbContext
     {
-        public IntegrationTCCDbContext(DbContextOptions<IntegrationTCCDbContext> options): base(options)
+        public IntegrationTCCDbContext(DbContextOptions<IntegrationTCCDbContext> options) : base(options)
         {
         }
-        public DbSet<ProjectTCCRepository> ProjectsTCC => Set<ProjectTCCRepository>();
-        public DbSet<StudentRepository> Students => Set<StudentRepository>();
-        public DbSet<TeacherRepository> Teachers => Set<TeacherRepository>();
-        public DbSet<ProjectTCCCommentsRepository> ProjectTCCComments => Set<ProjectTCCCommentsRepository>();
+
+        public DbSet<ProjectTCC> ProjectsTCC { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<ProjectTCCComments> ProjectTCCComments { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {            
+        {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder
-            .UseSqlServer(
-                @"Server=(localdb)\mssqllocaldb;Database=EFNullableReferenceTypes;Trusted_Connection=True");
     }
 }
