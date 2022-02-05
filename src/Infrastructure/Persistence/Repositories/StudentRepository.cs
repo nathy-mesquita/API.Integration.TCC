@@ -22,7 +22,7 @@ namespace API.Integration.TCC.Infrastructure.Persistence.Repositories
         public async Task AddAsync(Student student)
         {
             _logger.LogInformation($"Iniciando o método AddAsync");
-            await _dbContext.Students.AddAsync(student);
+            await _dbContext.Students!.AddAsync(student);
             _logger.LogInformation($"Adicionando Aluno={student}");
             await _dbContext.SaveChangesAsync();
             _logger.LogInformation($"Persistência realizada");

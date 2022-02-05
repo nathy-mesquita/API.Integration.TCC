@@ -5,11 +5,11 @@ namespace API.Integration.TCC.Application.Commands.CreateTeacher
 {
     public class CreateTeacherCommand : IRequest<int>
     {
-        public string FullName { get; private set; }
-        public string Email { get; private set; }
-        public string Password { get; private set; }
-        public DateTime BirthDate { get; private set; }
-        public string Specialty { get; private set; }
-        public string SubjectsTaught { get; private set; }
+        public string? FullName { get; set; }
+        public string? Email { get; set; }
+        public string? Password { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string? Specialty { get; set; }
+        public string? SubjectsTaught { get; set; }
     }
 }

@@ -20,14 +20,14 @@ namespace API.Integration.TCC.Infrastructure.Persistence.Repositories
 
         public async Task AddAsync(ProjectTCC projectTCC)
         {
-            await _dbContext.ProjectsTCC.AddAsync(projectTCC);
+            await _dbContext.ProjectsTCC!.AddAsync(projectTCC);
             await _dbContext.SaveChangesAsync();
         }
 
         //TODO: é necessário esse metodo aqui?
         public async Task AddCommentAsync(ProjectTCCComments projectTCCComments)
         {
-            await _dbContext.ProjectTCCComments.AddAsync(projectTCCComments);
+            await _dbContext.ProjectTCCComments!.AddAsync(projectTCCComments);
             await _dbContext.SaveChangesAsync();
         }
 

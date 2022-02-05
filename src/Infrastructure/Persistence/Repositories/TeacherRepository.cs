@@ -21,7 +21,7 @@ namespace API.Integration.TCC.Infrastructure.Persistence.Repositories
         public async Task AddAsync(Teacher teacher)
         {
             _logger.LogInformation($"Iniciando o método AddAsync");
-            await _dbContext.Teachers.AddAsync(teacher);
+            await _dbContext.Teachers!.AddAsync(teacher);
             _logger.LogInformation($"Adicionando Professor={teacher}");
             await _dbContext.SaveChangesAsync();
             _logger.LogInformation($"Persistência realizada");
@@ -43,6 +43,12 @@ namespace API.Integration.TCC.Infrastructure.Persistence.Repositories
         {
             _logger.LogInformation($"Iniciando o método GetUserByEmailAndPasswordAsync");
             return await _dbContext.Teachers.SingleAsync(t => t.Email == email && t.Password == passwordHash);
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            _logger.LogInformation($"Iniciando o método SaveChangesAsync");
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

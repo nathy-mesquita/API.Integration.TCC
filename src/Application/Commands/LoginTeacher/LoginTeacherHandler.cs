@@ -25,21 +25,21 @@ namespace API.Integration.TCC.Application.Commands.LoginTeacher
             _logger.LogInformation("Iniciando o Handler de login de um professor");
 
             _logger.LogInformation("Utilizando altoritmo para criar Hash de senha");
-            var passwordHash = _authService.ComputeSha256Hash(request.Password);
+            var passwordHash = _authService.ComputeSha256Hash(request.Password!);
 
             _logger.LogInformation("Buscando no banco um Student que tenha o meu email e senha no formato Hash");
-            var teacher = await _teacherRepository.GetUserByEmailAndPasswordAsync(request.Email, passwordHash);
+            var teacher = await _teacherRepository.GetUserByEmailAndPasswordAsync(request.Email!, passwordHash);
 
             if (teacher is null)
             {
                 _logger.LogError("Erro no login");
-                return null;
+                return null!;
             }
 
             _logger.LogInformation("Gerando o token passando os dados do professor");
-            var token = _authService.GenereteJwtToken(teacher.Email, teacher.Role);
+            var token = _authService.GenereteJwtToken(teacher.Email!, teacher.Role!);
 
-            var loginTeacherViewModel = new LoginTeacherViewModel(teacher.Email, token);
+            var loginTeacherViewModel = new LoginTeacherViewModel(teacher.Email!, token);
             _logger.LogInformation($"Resultado: loginTeacherViewModel={loginTeacherViewModel}");
 
             return loginTeacherViewModel;

@@ -37,10 +37,10 @@ namespace API.Integration.TCC.Application.Commands.CreateTeacher
 
         }
 
-        public bool ValidPassword(string password)
+        public bool ValidPassword(string? password)
         {
             var regex = new Regex(@"^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!*@#$%^&+=]).*$");
-            return regex.IsMatch(password);
+            return regex.IsMatch(password!);
         }
     }
 }

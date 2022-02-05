@@ -24,7 +24,7 @@ namespace API.Integration.TCC.Application.Commands.CreateTeacher
         public async Task<int> Handle(CreateTeacherCommand request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Iniciando a criação de um professor");
-            var passwordHash = _authService.ComputeSha256Hash(request.Password);
+            var passwordHash = _authService.ComputeSha256Hash(request.Password!);
             var teacher = new Teacher(request.FullName, request.Email, passwordHash, request.BirthDate, request.Specialty, request.SubjectsTaught);
             await _teacherRepository.AddAsync(teacher);
             _logger.LogInformation($"Professor criado Teacher= {teacher}");

@@ -5,10 +5,25 @@ namespace API.Integration.TCC.Application.Commands.CreateStudent
 {
     public class CreateStudentCommand : IRequest<Guid>
     {
-        public string FullName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Course { get; set; }
+        /// <summary>
+        /// Nome completo do aluno
+        /// </summary>
+        public string? FullName { get; set; }
+        /// <summary>
+        /// Email
+        /// </summary>
+        public string? Email { get; set; }
+        /// <summary>
+        /// Senha
+        /// </summary>
+        public string? Password { get; set; }
+        /// <summary>
+        /// Curso matriculado
+        /// </summary>
+        public string? Course { get; set; }
+        /// <summary>
+        /// Data de nascimento
+        /// </summary>
         public DateTime BirthDate { get; set; }
     }
 }

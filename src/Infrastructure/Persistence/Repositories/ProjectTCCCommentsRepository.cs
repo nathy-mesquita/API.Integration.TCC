@@ -22,7 +22,7 @@ namespace API.Integration.TCC.Infrastructure.Persistence.Repositories
         public async Task AddAsync(ProjectTCCComments comments)
         {
             _logger.LogInformation($"Iniciando o método AddAsync");
-            await _dbContext.ProjectTCCComments.AddAsync(comments);
+            await _dbContext.ProjectTCCComments!.AddAsync(comments);
             _logger.LogInformation($"Adicionando o comments={comments}");
             await _dbContext.SaveChangesAsync();
             _logger.LogInformation($"Persistência realizada!");
@@ -31,7 +31,7 @@ namespace API.Integration.TCC.Infrastructure.Persistence.Repositories
         public async Task<List<ProjectTCCComments>> GetAsyncByProjectTCC(int idProjectTCC)
         {
             _logger.LogInformation($"Iniciando o método GetAsyncByProjectTCC");
-            return await _dbContext.ProjectTCCComments.Where(p => p.IdProjectTCC == idProjectTCC).ToListAsync();
+            return await _dbContext.ProjectTCCComments!.Where(p => p.IdProjectTCC == idProjectTCC).ToListAsync();
         }
 
         public async Task SaveChangesAsync()
