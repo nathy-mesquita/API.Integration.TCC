@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace API.Integration.TCC.Application.Queries.GetAllStudent
 {
-    public class GetAllStudentQueryHander : IRequestHandler<GetAllStudentQuery, List<StudentViewModel>>
+    public class GetAllStudentHandler : IRequestHandler<GetAllStudentQuery, List<StudentViewModel>>
     {
         private readonly IStudentRepository _studentRepository;
-        private readonly ILogger<GetAllStudentQueryHander> _logger;
+        private readonly ILogger<GetAllStudentHandler> _logger;
 
-        public GetAllStudentQueryHander(IStudentRepository studentRepository, ILogger<GetAllStudentQueryHander> logger)
+        public GetAllStudentHandler(IStudentRepository studentRepository, ILogger<GetAllStudentHandler> logger)
         {
             _studentRepository = studentRepository;
             _logger = logger;
@@ -23,14 +23,14 @@ namespace API.Integration.TCC.Application.Queries.GetAllStudent
         {
             _logger.LogInformation($"Iniciando a consulta de Alunos");
             var students = await _studentRepository.GetAllAsync();
-            _logger.LogInformation($"Consultando os dados de todos os alunos e armazenando na variável ={students}");
+            _logger.LogInformation($"Consultando os dados de todos os alunos e armazenando na variável student={students}");
 
-            var userViewModel = students
-            .Select(s => new StudentViewModel(s.Enrollment, s.FullName, s.Email, s.Role, s.CreatedAt))
+            var studentViewModel = students
+            .Select(s => new StudentViewModel(s.Enrollment, s.FullName!, s.Email!, s.Role!, s.CreatedAt))
             .ToList();
-            _logger.LogInformation($"Lista de todos os alunos que serão exibidos ={userViewModel}");
+            _logger.LogInformation($"Lista de todos os alunos que serão exibidos students={studentViewModel}");
 
-            return userViewModel;
+            return studentViewModel;
         }
     }
 }
