@@ -10,5 +10,6 @@ namespace API.Integration.TCC.Domain.Repositories
         Task<Teacher> GetByIdAsync(int id);
         Task<Teacher> GetUserByEmailAndPasswordAsync(string email, string passwordHash);
         Task AddAsync(Teacher teacher);
+        Task SaveChangesAsync();
     }
 }
