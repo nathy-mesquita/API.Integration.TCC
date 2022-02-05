@@ -5,10 +5,11 @@ namespace API.Integration.TCC.Domain.Entities
 {
     public class Student : User
     {
-        public Student(string fullName,
-                        string email,
-                        string password,
-                        string course,
+
+        public Student(string? fullName,
+                        string? email,
+                        string? password,
+                        string? course,
                         DateTime birthDate)
         {
             FullName = fullName;
@@ -29,7 +30,7 @@ namespace API.Integration.TCC.Domain.Entities
         /// Curso matriculado
         /// </summary>
         /// <value></value>
-        public string Course { get; private set; }
+        public string? Course { get; private set; }
 
         /// <summary>
         /// Matrícula do aluno
@@ -41,13 +42,13 @@ namespace API.Integration.TCC.Domain.Entities
         /// Comentários
         /// </summary>
         /// <value></value>
-        public List<ProjectTCCComments> Comments { get; set; }
+        public List<ProjectTCCComments>? Comments { get; set; }
 
 
         /// <summary>
         /// Dono do Projeto
         /// </summary>
         /// <value></value>
-        public ProjectTCC OwnedProject { get; set; }
+        public ProjectTCC? OwnedProject { get; set; }
     }
 }

@@ -5,12 +5,12 @@ namespace API.Integration.TCC.Domain.Entities
 {
     public class Teacher : User
     {
-        public Teacher(string fullName,
-                        string email,
-                        string password,
+        public Teacher(string? fullName,
+                        string? email,
+                        string? password,
                         DateTime birthDate,
-                        string specialty,
-                        string subjectsTaught)
+                        string? specialty,
+                        string? subjectsTaught)
         {
             FullName = fullName;
             Email = email;
@@ -37,13 +37,13 @@ namespace API.Integration.TCC.Domain.Entities
         /// Especialidade
         /// </summary>
         /// <value></value>
-        public string Specialty { get; private set; }
+        public string? Specialty { get; private set; }
 
         /// <summary>
         /// Disciplinas Ministradas
         /// </summary>
         /// <value></value>
-        public string SubjectsTaught { get; private set; }
+        public string? SubjectsTaught { get; private set; }
 
         /// <summary>
         /// Comentários
@@ -56,5 +56,10 @@ namespace API.Integration.TCC.Domain.Entities
         /// </summary>
         /// <value></value>
         public List<ProjectTCC> AdvisorProjects { get; private set; }
+
+        public void UpdateTeacherAdvisor()
+        {
+            Advisor = true;
+        }
     }
 }

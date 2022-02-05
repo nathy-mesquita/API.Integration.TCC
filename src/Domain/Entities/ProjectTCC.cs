@@ -6,17 +6,14 @@ namespace API.Integration.TCC.Domain.Entities
 {
     public class ProjectTCC : BaseEntity
     {
-        public ProjectTCC(string title,
-                            string description,
+        public ProjectTCC(string? title,
+                            string? description,
                             int idStudent,
-                            int idTeacher,
                             DateTime defenseForecast)
         {
             Title = title;
             Description = description;
             IdStudent = idStudent;
-
-            IdTeacher = idTeacher;
             DefenseForecast = defenseForecast;
 
             CreatedAt = DateTime.Now;
@@ -28,25 +25,25 @@ namespace API.Integration.TCC.Domain.Entities
         /// Título
         /// </summary>
         /// <value></value>
-        public string Title { get; private set; }
+        public string? Title { get; private set; }
 
         /// <summary>
         /// Descrição
         /// </summary>
         /// <value></value>
-        public string Description { get; private set; }
+        public string? Description { get; private set; }
 
         /// <summary>
         /// Id do Aluno
         /// </summary>
         /// <value></value>
-        public int IdStudent { get;  set; }
+        public int IdStudent { get; set; }
 
         /// <summary>
         /// Aluno
         /// </summary>
         /// <value></value>
-        public Student Student { get;  set; }
+        public Student? Student { get; set; }
 
         /// <summary>
         /// Id do Professor
@@ -58,7 +55,7 @@ namespace API.Integration.TCC.Domain.Entities
         /// Professor
         /// </summary>
         /// <value></value>
-        public Teacher Teacher { get; private set; }
+        public Teacher? Teacher { get; private set; }
 
         /// <summary>
         /// Previsão de Defesa
@@ -121,12 +118,15 @@ namespace API.Integration.TCC.Domain.Entities
                 FinishedAt = DateTime.Now;
             }
         }
-        public void Update(string title, string description, int idTeacher, DateTime defenseForecast)
+        public void Update(string title, string description, DateTime defenseForecast)
         {
             Title = title;
             Description = description;
-            IdTeacher = idTeacher;
             DefenseForecast = defenseForecast;
+        }
+        public void UpdateTeacher(int idTeacher)
+        {
+            IdTeacher = idTeacher;
         }
 
     }

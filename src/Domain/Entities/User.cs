@@ -12,24 +12,24 @@ namespace API.Integration.TCC.Domain.Entities
         /// Nome Completo
         /// </summary>
         /// <value></value>
-        public string FullName { get; protected set; }
+        public string? FullName { get; protected set; }
 
         /// <summary>
         /// Email para Login
         /// </summary>
         /// <value></value>
-        public string Email { get; protected set; }
+        public string? Email { get; protected set; }
 
         /// <summary>
         /// Senha para Login
         /// </summary>
         /// <value></value>
-        public string Password { get; protected set; }
+        public string? Password { get; protected set; }
         /// <summary>
         /// Papel do Aluno
         /// </summary>
         /// <value></value>
-        public string Role { get; protected set; }
+        public string? Role { get; protected set; }
 
         /// <summary>
         /// Data de Nascimento
