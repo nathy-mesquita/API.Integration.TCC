@@ -1,5 +1,4 @@
-﻿using API.Integration.TCC.Application.Models.ViewModels;
-using MediatR;
+﻿using MediatR;
 using System.Collections.Generic;
 
 namespace API.Integration.TCC.Application.Queries.GetAllStudent
