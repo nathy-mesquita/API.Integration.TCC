@@ -1,7 +1,7 @@
 using API.Integration.TCC.Application.Commands.CreateStudent;
 using API.Integration.TCC.Application.Commands.LoginStudent;
 using API.Integration.TCC.Application.Queries.GetAllStudent;
-using API.Integration.TCC.Application.Queries.GetStudentByEnrollment;
+using API.Integration.TCC.Application.Queries.GetStudentById;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -39,16 +39,17 @@ namespace API.Integration.TCC.WebAP.Controllers
             return Ok(students);
         }
 
+
         /// <summary>
-        /// Busca um Aluno por matricula 
+        /// Busca um Aluno por Id 
         /// </summary>
-        /// <param name="matricula">Matricula</param>
+        /// <param name="id">Identificador do aluno</param>
         /// <returns></returns>
-        [HttpGet("{matricula}")]
-        [Authorize(Roles = Roles.Administrador)]
-        public async Task<IActionResult> GetByEnrollment(Guid matricula)
+        [HttpGet("{id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetById(int id)
         {
-            var query = new GetStudentByEnrollmentQuery(matricula);
+            var query = new GetStudentByIdQuery(id);
             var student = await _mediator.Send(query);
             if (student is null) return NotFound();
             return Ok(student);
@@ -63,8 +64,8 @@ namespace API.Integration.TCC.WebAP.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Post([FromBody] CreateStudentCommand command)
         {
-            var enrollment = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetByEnrollment), new { enrollment = enrollment }, command);
+            var id = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetById), new { id = id }, command);
         }
 
         /// <summary>

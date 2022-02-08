@@ -44,7 +44,7 @@ namespace API.Integration.TCC.WebAP.Controllers
         /// <param name="id">Identificador</param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        [Authorize(Roles = Roles.Administrador)]
+        [Authorize(Roles = Roles.Administrador + "," + Roles.Student + "," + Roles.Teacher)]
         public async Task<IActionResult> GetById(int id)
         {
             var query = new GetTeacherByIdQuery(id);
