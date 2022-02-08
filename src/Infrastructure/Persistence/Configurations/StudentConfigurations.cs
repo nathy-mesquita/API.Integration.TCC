@@ -10,7 +10,18 @@ namespace Infrastructure.Persistence.Configurations
         {
             //Chave primária
             builder
-            .HasKey(u => u.Enrollment);
+            .HasKey(s => s.Enrollment);
+
+
+            //O Aluno tem 0 ou 1 comentário
+            //O comentário tem um aluno 
+            //Chave estrangeira do relacionamento -> Id do comentário
+            //Caso um relacionamento seja deletado, retringir o procedimento
+            builder
+            .HasMany(s => s.Comments)
+            .WithOne()
+            .HasForeignKey(s => s.Id)
+            .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
