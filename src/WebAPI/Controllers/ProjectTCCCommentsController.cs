@@ -1,8 +1,13 @@
+using API.Integration.TCC.Application.Commands.CreateComment;
+using API.Integration.TCC.Application.Commands.DeleteComment;
+using API.Integration.TCC.Application.Commands.UpdateComment;
+using API.Integration.TCC.Application.Queries.GetCommentsById;
+using API.Integration.TCC.Application.Queries.GetCommentsQuery;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace API.Integration.TCC.WebAP.Controllers
 {
@@ -19,8 +24,21 @@ namespace API.Integration.TCC.WebAP.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Busca um comentário pelo Id
+        /// </summary>
+        /// <param name="id">Identificador único comentário</param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        [Authorize(Roles = Roles.Administrador + "," + Roles.Student + "," + Roles.Teacher)]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var query = new GetCommentsByIdQuery(id);
+            var comment = await _mediator.Send(query);
+            if (comment is null) return NotFound();
+            return Ok(comment);
+        }
 
-        // GET api/ProjectTCCComments/id/project
         /// <summary>
         /// Busca dos comentários pelo Id do projeto
         /// </summary>
@@ -30,32 +48,26 @@ namespace API.Integration.TCC.WebAP.Controllers
         [Authorize(Roles = Roles.Administrador + "," + Roles.Student + "," + Roles.Teacher)]
         public async Task<IActionResult> GetByIdProject(int id)
         {
-            // var query = new GetProjectQuery(id);
-            // var project = await _mediator.Send(query);
-            // if (project is null) return NotFound();
-            // return Ok(project);
-            return Ok();
+            var query = new GetCommentsQuery(id);
+            var comments = await _mediator.Send(query);
+            if (comments is null) return NotFound();
+            return Ok(comments);
         }
-        
-        
-        // POST api/ProjectTCCComments/id/project
+
         /// <summary>
         /// Realiza um comentário no projeto
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="command"></param>
+        /// <param name="id">Id do projeto</param>
+        /// <param name="command">Conteúdo do comentário</param>
         /// <returns></returns>
         [HttpPost("{id}/project")]
         [Authorize(Roles = Roles.Student + "," + Roles.Teacher)]
-        public async Task<IActionResult> PostComment(int id, [FromBody] string command)
+        public async Task<IActionResult> PostComment([FromBody] CreateCommentCommand command)
         {
-            //[FromBody] CreateCommentCommand command
-            // 400 - return BadRequest();
-            //await _mediator.Send(command);
-            return NoContent(); //204
+            var id = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetById), new { id = id }, command);
         }
 
-        // PUT api/ProjectTCCComments/id/project
         /// <summary>
         /// Atualiza um comentário de projeto
         /// </summary>
@@ -64,29 +76,29 @@ namespace API.Integration.TCC.WebAP.Controllers
         /// <returns></returns>
         [HttpPut("{id}/project")]
         [Authorize(Roles = Roles.Student)]
-        public async Task<IActionResult> Put(int id, [FromBody] string command)
+        public async Task<IActionResult> Put(int id, [FromBody] UpdateCommentCommand command)
         {
-            //[FromBody] UpdateProjectCommentCommand command
-            // if (command.Description.Length > 200)
-            // {
-            //     return BadRequest();
-            // }
+            //TODO: Codereview
+            command.Id = id;
+            if (command.Content!.Length > 250)
+            {
+                return BadRequest();
+            }
             await _mediator.Send(command);
             return NoContent();
         }
 
-        // DELETE api/ProjectTCCComments/id/project
         /// <summary>
         /// Exclui um comentário de projeto
         /// </summary>
-        /// <param name="id">Identificador do projeto</param>
+        /// <param name="id">Identificador do comentário</param>
         /// <returns></returns>
         [HttpDelete("{id}/project")]
         [Authorize(Roles = Roles.Student)]
         public async Task<IActionResult> Delete(int id)
         {
-            // var command = new DeleteProjectCommand(id);
-            // await _mediator.Send(command);
+            var command = new DeleteCommentCommand(id);
+            await _mediator.Send(command);
             return NoContent();
         }
 

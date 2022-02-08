@@ -1,8 +1,16 @@
+using API.Integration.TCC.Application.Commands.CreateProjectTCC;
+using API.Integration.TCC.Application.Commands.DeleteProjectTCC;
+using API.Integration.TCC.Application.Commands.FinishProjectTCC;
+using API.Integration.TCC.Application.Commands.StartProjectTCC;
+using API.Integration.TCC.Application.Commands.UpdateProjectTCC;
+using API.Integration.TCC.Application.Commands.UpdateTeacherAdvisor;
+using API.Integration.TCC.Application.Queries.GetAllProjectTCC;
+using API.Integration.TCC.Application.Queries.GetProjectTCCById;
 using MediatR;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace API.Integration.TCC.WebAP.Controllers
 {
@@ -19,7 +27,6 @@ namespace API.Integration.TCC.WebAP.Controllers
             _logger = logger;
         }
 
-        // GET: api/projects?query=netCore
         /// <summary>
         /// Busca todos os projetos
         /// </summary>
@@ -29,14 +36,12 @@ namespace API.Integration.TCC.WebAP.Controllers
         [Authorize(Roles = Roles.Administrador + "," + Roles.Student + "," + Roles.Teacher)]
         public async Task<IActionResult> Get(string query)
         {
-            // var getAllProjectsQuery = new GetAllProjectsQuery(query);
-            // var projects = await _mediator.Send(getAllProjectsQuery);
-            // if(projects is null) return NotFound();
-            // return Ok(projects);
-            return Ok();
+            var getAllProjectsTCCQuery = new GetAllProjectTCCQuery(query);
+            var projectsTCC = await _mediator.Send(getAllProjectsTCCQuery);
+            if (projectsTCC is null) return NotFound();
+            return Ok(projectsTCC);
         }
 
-        // GET api/projets/id
         /// <summary>
         /// Busca um projeto pelo Id
         /// </summary>
@@ -46,14 +51,12 @@ namespace API.Integration.TCC.WebAP.Controllers
         [Authorize(Roles = Roles.Administrador + "," + Roles.Student + "," + Roles.Teacher)]
         public async Task<IActionResult> GetById(int id)
         {
-            // var query = new GetProjectQuery(id);
-            // var project = await _mediator.Send(query);
-            // if (project is null) return NotFound();
-            // return Ok(project);
-            return Ok();
+            var query = new GetProjectTCCByIdQuery(id);
+            var projectTCC = await _mediator.Send(query);
+            if (projectTCC is null) return NotFound();
+            return Ok(projectTCC);
         }
 
-        // POST projects
         /// <summary>
         /// Cria um projeto
         /// </summary>
@@ -61,54 +64,48 @@ namespace API.Integration.TCC.WebAP.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = Roles.Administrador + "," + Roles.Student)]
-        public async Task<IActionResult> Post([FromBody] string command)
+        public async Task<IActionResult> Post([FromBody] CreateProjectTCCCommand command)
         {
-            //[FromBody] CreateProjectCommand command
             var id = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetById), new { id = id}, command);
+            return CreatedAtAction(nameof(GetById), new { id = id }, command);
         }
 
-        // PUT api/projects/id/teacher
         /// <summary>
         /// Atribui um professor orientador a um projeto
         /// </summary>
         /// <param name="id">Identificador do projeto</param>
-        /// <param name="command">Informações a serem modificadas no projeto </param>
+        /// <param name="command">Informações a serem modificadas no projeto</param>
         /// <returns></returns>
         [HttpPut("{id}/teacher")]
-        [Authorize(Roles = Roles.Student)]
-        public async Task<IActionResult> PutTeacherAdvisor(int id, [FromBody] string command)
+        [Authorize(Roles = Roles.Teacher + "," + Roles.Student)]
+        public async Task<IActionResult> PutTeacherAdvisor(int id, [FromBody] UpdateTeacherAdvisorCommand command)
         {
-            //[FromBody] UpdateProjectCommand command
-            // if (command.Description.Length > 200)
-            // {
-            //     return BadRequest();
-            // }
+            //TODO: Como bloquear o Id do UpdateTeacherAdvisorCommand para não exibir para alteração do usuário
+            command.Id = id;
             await _mediator.Send(command);
             return NoContent();
         }
 
-        // PUT api/projects/id
         /// <summary>
         /// Atualiza um projeto
         /// </summary>
         /// <param name="id">Identificador</param>
-        /// <param name="command">Informações a serem modificadas no projeto </param>
+        /// <param name="command">Informações a serem modificadas no projeto</param>
         /// <returns></returns>
         [HttpPut("{id}")]
         [Authorize(Roles = Roles.Student)]
-        public async Task<IActionResult> Put(int id, [FromBody] string command)
+        public async Task<IActionResult> Put(int id, [FromBody] UpdateProjectTCCCommand command)
         {
-            //[FromBody] UpdateProjectCommand command
-            // if (command.Description.Length > 200)
-            // {
-            //     return BadRequest();
-            // }
+            //TODO: Como bloquear o Id do UpdateProjectTCCCommand para não exibir para alteração do usuário
+            command.Id = id;
+            if (command.Description!.Length > 250)
+            {
+                return BadRequest();
+            }
             await _mediator.Send(command);
             return NoContent();
         }
 
-        // DELETE api/projects/id
         /// <summary>
         /// Exclui um projeto
         /// </summary>
@@ -118,12 +115,11 @@ namespace API.Integration.TCC.WebAP.Controllers
         [Authorize(Roles = Roles.Student)]
         public async Task<IActionResult> Delete(int id)
         {
-            // var command = new DeleteProjectCommand(id);
-            // await _mediator.Send(command);
+            var command = new DeleteProjectTCCCommand(id);
+            await _mediator.Send(command);
             return NoContent();
         }
 
-        // PUT api/projects/id/start
         /// <summary>
         /// Inicia um projeto
         /// </summary>
@@ -133,12 +129,12 @@ namespace API.Integration.TCC.WebAP.Controllers
         [Authorize(Roles = Roles.Student)]
         public async Task<IActionResult> Start(int id)
         {
-            // var command = new StartProjectCommand(id);
-            // await _mediator.Send(command);
-            return NoContent(); //204
+
+            var command = new StartProjectTCCCommand(id);
+            await _mediator.Send(command);
+            return NoContent();
         }
 
-        //PUT api/projects/id/finish
         /// <summary>
         /// Finaliza um projeto
         /// </summary>
@@ -148,9 +144,9 @@ namespace API.Integration.TCC.WebAP.Controllers
         [Authorize(Roles = Roles.Student)]
         public async Task<IActionResult> Finish(int id)
         {
-            // var command = new FinishProjectCommand(id);
-            // await _mediator.Send(command);
-            return NoContent(); //204
+            var command = new FinishProjectTCCCommand(id);
+            await _mediator.Send(command);
+            return NoContent();
         }
     }
 }
