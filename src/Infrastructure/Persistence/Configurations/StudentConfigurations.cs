@@ -10,7 +10,7 @@ namespace Infrastructure.Persistence.Configurations
         {
             //Chave primária
             builder
-            .HasKey(s => s.Enrollment);
+            .HasKey(s => s.Id);
 
 
             //O Aluno tem 0 ou 1 comentário

@@ -2,7 +2,6 @@ using API.Integration.TCC.Domain.Entities;
 using API.Integration.TCC.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -34,10 +33,10 @@ namespace API.Integration.TCC.Infrastructure.Persistence.Repositories
             return await _dbContext.Students.ToListAsync<Student>();
         }
 
-        public async Task<Student> GetByEnrollmentAsync(Guid enrollment)
+        public async Task<Student> GetByIdAsync(int id)
         {
-            _logger.LogInformation($"Iniciando o método GetByEnrollmentAsync");
-            return await _dbContext.Students.SingleOrDefaultAsync(s => s.Enrollment == enrollment);
+            _logger.LogInformation($"Iniciando o método GetByIdAsync");
+            return await _dbContext.Students.SingleOrDefaultAsync(s => s.Id == id);
         }
 
         public async Task<Student> GetUserByEmailAndPasswordAsync(string email, string passwordHash)
