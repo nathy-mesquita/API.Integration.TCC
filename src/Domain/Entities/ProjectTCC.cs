@@ -93,8 +93,6 @@ namespace API.Integration.TCC.Domain.Entities
         /// <value></value>
         public List<ProjectTCCComments> Comments { get; private set; }
 
-
-
         public void Cancel()
         {
             if (Status == ProjectStatusEnum.InProgress || Status == ProjectStatusEnum.Created)
@@ -120,13 +118,19 @@ namespace API.Integration.TCC.Domain.Entities
         }
         public void Update(string title, string description, DateTime defenseForecast)
         {
-            Title = title;
-            Description = description;
-            DefenseForecast = defenseForecast;
+            if (Status == ProjectStatusEnum.Created || Status == ProjectStatusEnum.InProgress)
+            {
+                Title = title;
+                Description = description;
+                DefenseForecast = defenseForecast;
+            }
         }
         public void UpdateTeacher(int idTeacher)
         {
-            IdTeacher = idTeacher;
+            if (Status == ProjectStatusEnum.Created || Status == ProjectStatusEnum.InProgress)
+            {
+                IdTeacher = idTeacher;
+            }
         }
 
     }
