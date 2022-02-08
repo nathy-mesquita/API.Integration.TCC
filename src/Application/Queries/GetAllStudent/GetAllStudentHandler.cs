@@ -26,7 +26,7 @@ namespace API.Integration.TCC.Application.Queries.GetAllStudent
             _logger.LogInformation($"Consultando os dados de todos os alunos e armazenando na variável student={students}");
 
             var studentViewModel = students
-            .Select(s => new StudentViewModel(s.Enrollment, s.FullName!, s.Email!, s.Role!, s.CreatedAt))
+            .Select(s => new StudentViewModel(s.Id, s.Enrollment, s.FullName!, s.Course!, s.CreatedAt))
             .ToList();
             _logger.LogInformation($"Lista de todos os alunos que serão exibidos students={studentViewModel}");
 

@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace API.Integration.TCC.Application.Queries.GetStudentByEnrollment
+namespace API.Integration.TCC.Application.Queries.GetStudentById
 {
-    public class StudentDetailsViewModel
+    public class StudentDetailsByIdViewModel
     {
-        public StudentDetailsViewModel(Guid enrollment, string fullName, string email, DateTime birthDate, DateTime createdAt, bool active)
+        public StudentDetailsByIdViewModel(Guid enrollment, string fullName, string email, DateTime birthDate, DateTime createdAt, bool active)
         {
             Enrollment = enrollment;
             FullName = fullName;

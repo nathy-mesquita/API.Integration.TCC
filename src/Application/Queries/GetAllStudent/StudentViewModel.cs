@@ -4,19 +4,19 @@ namespace API.Integration.TCC.Application.Queries.GetAllStudent
 {
     public class StudentViewModel
     {
-        public StudentViewModel(Guid enrollment, string fullName, string email, string role, DateTime createdAt)
+        public StudentViewModel(int id, Guid enrollment, string fullName, string course, DateTime createdAt)
         {
+            Id = id;
             Enrollment = enrollment;
             FullName = fullName;
-            Email = email;
-            Role = role;
+            Course = course;
             CreatedAt = createdAt;
         }
 
+        public int Id { get; private set; }
         public Guid Enrollment { get; set; }
         public string FullName { get; private set; }
-        public string Email { get; private set; }
-        public string Role { get; private set; }
+        public string Course { get; private set; }
         public DateTime CreatedAt { get; private set; }
     }
 }

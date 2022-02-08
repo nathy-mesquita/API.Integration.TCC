@@ -3,7 +3,7 @@ using System;
 
 namespace API.Integration.TCC.Application.Commands.CreateStudent
 {
-    public class CreateStudentCommand : IRequest<Guid>
+    public class CreateStudentCommand : IRequest<int>
     {
         /// <summary>
         /// Nome completo do aluno
