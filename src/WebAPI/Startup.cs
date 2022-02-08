@@ -1,10 +1,8 @@
 using API.Integration.TCC.Application;
 using API.Integration.TCC.Infrastructure;
-using API.Integration.TCC.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,11 +25,6 @@ namespace API.Integration.TCC.WebAP
             services.AddSwaggerApiDoc();
             AddJwt(services);
 
-            var connectionString = _configuration.GetConnectionString("IntegrationTCC");
-            services.AddDbContext<IntegrationTCCDbContext>(
-                options => options.UseSqlServer(connectionString));
-
-            //services.AddDbContext<IntegrationTCCDbContext>(options => options.UseInMemoryDatabase(connectionString));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

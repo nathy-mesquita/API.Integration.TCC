@@ -19,7 +19,7 @@ namespace API.Integration.TCC.WebAP
                     {
                         options.JsonSerializerOptions.IgnoreNullValues = true;
                     });
-            //AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateUserCommandValidator>());
+            //.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateTeacherValidator>())
             services.AddHealthChecks();
         }
 
