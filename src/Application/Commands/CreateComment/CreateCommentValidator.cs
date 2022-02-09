@@ -1,7 +1,9 @@
 ﻿using FluentValidation;
+using System.Diagnostics.CodeAnalysis;
 
 namespace API.Integration.TCC.Application.Commands.CreateComment
 {
+    [ExcludeFromCodeCoverage]
     public class CreateCommentValidator : AbstractValidator<CreateCommentCommand>
     {
         public CreateCommentValidator()

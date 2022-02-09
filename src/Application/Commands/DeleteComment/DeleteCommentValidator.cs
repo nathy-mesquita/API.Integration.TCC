@@ -1,7 +1,9 @@
 ﻿using FluentValidation;
+using System.Diagnostics.CodeAnalysis;
 
 namespace API.Integration.TCC.Application.Commands.DeleteComment
 {
+    [ExcludeFromCodeCoverage]
     public class DeleteCommentValidator : AbstractValidator<DeleteCommentCommand>
     {
         public DeleteCommentValidator()

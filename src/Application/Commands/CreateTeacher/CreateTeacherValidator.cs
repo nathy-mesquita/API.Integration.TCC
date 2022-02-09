@@ -1,9 +1,11 @@
 ﻿using FluentValidation;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 
 namespace API.Integration.TCC.Application.Commands.CreateTeacher
 {
+    [ExcludeFromCodeCoverage]
     public class CreateTeacherValidator : AbstractValidator<CreateTeacherCommand>
     {
         public CreateTeacherValidator()

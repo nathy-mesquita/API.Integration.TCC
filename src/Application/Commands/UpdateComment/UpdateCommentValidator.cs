@@ -1,7 +1,9 @@
 ﻿using FluentValidation;
+using System.Diagnostics.CodeAnalysis;
 
 namespace API.Integration.TCC.Application.Commands.UpdateComment
 {
+    [ExcludeFromCodeCoverage]
     public class UpdateCommentValidator : AbstractValidator<UpdateCommentCommand>
     {
         public UpdateCommentValidator()

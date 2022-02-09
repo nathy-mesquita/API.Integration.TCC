@@ -1,7 +1,9 @@
 ﻿using FluentValidation;
+using System.Diagnostics.CodeAnalysis;
 
 namespace API.Integration.TCC.Application.Commands.UpdateProjectTCC
 {
+    [ExcludeFromCodeCoverage]
     public class UpdateProjectTCCValidatior : AbstractValidator<UpdateProjectTCCCommand>
     {
         public UpdateProjectTCCValidatior()
