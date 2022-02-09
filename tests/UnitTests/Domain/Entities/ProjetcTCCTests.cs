@@ -9,13 +9,7 @@ namespace UnitTests.Domain.Entities
 
     public class ProjetcTCCTests
     {
-        private readonly List<ProjectTCC> _projectTCCs = new List<ProjectTCC>()
-        {
-            new ProjectTCC("Titulo do Projeto 1", "Descrição do projeto 1", 1, CreateFakeDefenseForecast()),
-            new ProjectTCC("Titulo do Projeto 2", "Descrição do projeto 2", 2, CreateFakeDefenseForecast()),
-            new ProjectTCC("Titulo do Projeto 3", "Descrição do projeto 3", 3, CreateFakeDefenseForecast()),
-            new ProjectTCC("Titulo do Projeto 4", "Descrição do projeto 4", 4, CreateFakeDefenseForecast()),
-        };
+
 
         [Fact(DisplayName = "Dado a criação de um projeto de tcc, quando criado, retornar um projeto de tcc válido.")]
         [Trait("CreateProjectTCC", "Created")]
@@ -138,6 +132,17 @@ namespace UnitTests.Domain.Entities
             Assert.IsAssignableFrom<int>(projectTCC.IdTeacher);
         }
 
+
+
+        #region Fakes
+        private readonly List<ProjectTCC> _projectTCCs = new List<ProjectTCC>()
+        {
+            new ProjectTCC("Titulo do Projeto 1", "Descrição do projeto 1", 1, CreateFakeDefenseForecast()),
+            new ProjectTCC("Titulo do Projeto 2", "Descrição do projeto 2", 2, CreateFakeDefenseForecast()),
+            new ProjectTCC("Titulo do Projeto 3", "Descrição do projeto 3", 3, CreateFakeDefenseForecast()),
+            new ProjectTCC("Titulo do Projeto 4", "Descrição do projeto 4", 4, CreateFakeDefenseForecast()),
+        };
+        #endregion
         #region Métodos Auxiliares
         private static DateTime CreateFakeDefenseForecast()
         {
