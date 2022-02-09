@@ -1,5 +1,6 @@
 using API.Integration.TCC.WebAP.Filters;
 using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -18,8 +19,7 @@ namespace API.Integration.TCC.WebAP
                     .AddJsonOptions(options =>
                     {
                         options.JsonSerializerOptions.IgnoreNullValues = true;
-                    });
-            //.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateTeacherValidator>())
+                    }).AddFluentValidation();
             services.AddHealthChecks();
         }
 
