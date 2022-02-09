@@ -2,12 +2,14 @@
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace API.Integration.TCC.Application
 {
     public static class DependencyInjection
     {
+        [ExcludeFromCodeCoverage]
         public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
         {
             var assemblies = Assembly.GetExecutingAssembly();
