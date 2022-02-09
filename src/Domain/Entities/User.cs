@@ -4,9 +4,6 @@ namespace API.Integration.TCC.Domain.Entities
 {
     public abstract class User : BaseEntity
     {
-        public User()
-        {
-        }
 
         /// <summary>
         /// Nome Completo

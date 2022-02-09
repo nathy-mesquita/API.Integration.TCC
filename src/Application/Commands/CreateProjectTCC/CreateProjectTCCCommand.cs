@@ -16,10 +16,10 @@ namespace API.Integration.TCC.Application.Commands.CreateProjectTCC
         /// <summary>
         /// ID do aluno
         /// </summary>
-        public int IdStudent { get; private set; }
+        public int IdStudent { get; set; }
         /// <summary>
         /// Data da defesa
         /// </summary>
-        public DateTime DefenseForecast { get; private set; }
+        public DateTime DefenseForecast { get; set; }
     }
 }

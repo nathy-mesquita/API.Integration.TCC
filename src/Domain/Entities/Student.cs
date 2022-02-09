@@ -24,6 +24,7 @@ namespace API.Integration.TCC.Domain.Entities
             Enrollment = Guid.NewGuid();
 
             Comments = new List<ProjectTCCComments>();
+            //OwnedProject = new ProjectTCC();
         }
 
         /// <summary>

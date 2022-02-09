@@ -5,7 +5,9 @@ namespace API.Integration.TCC.Domain.Entities
 {
     public class ProjectTCCComments : BaseEntity
     {
-        public ProjectTCCComments(string? content, int idProjectTCC, int idUser)
+        public ProjectTCCComments(string? content,
+                                    int idProjectTCC,
+                                    int idUser)
         {
             Content = content;
             IdProjectTCC = idProjectTCC;
@@ -27,15 +29,14 @@ namespace API.Integration.TCC.Domain.Entities
 
         public void Update(string content)
         {
-            Content = content;
+            if (Status == CommentStatusEnum.Created)
+                Content = content;
         }
 
         public void Delete()
         {
             if (Status == CommentStatusEnum.Created)
-            {
                 Status = CommentStatusEnum.Deleted;
-            }
         }
     }
 }

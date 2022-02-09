@@ -59,7 +59,8 @@ namespace API.Integration.TCC.Domain.Entities
 
         public void UpdateTeacherAdvisor()
         {
-            Advisor = true;
+            if (Active)
+                Advisor = true;
         }
     }
 }
