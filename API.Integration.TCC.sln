@@ -5,19 +5,27 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BDADBF43-A6EF-46A9-9C10-088EA167C936}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "src\WebAPI\WebAPI.csproj", "{85C0787E-E3A2-4E0D-BA95-FB056F07971C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "src\WebAPI\WebAPI.csproj", "{85C0787E-E3A2-4E0D-BA95-FB056F07971C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Application\Application.csproj", "{388A27B3-05C4-4B55-8447-8A0E0BD04D28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{388A27B3-05C4-4B55-8447-8A0E0BD04D28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{AC4E642D-0666-4965-8198-1D2F9B68B1E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{AC4E642D-0666-4965-8198-1D2F9B68B1E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{EF95AE28-5A99-4DB6-9D61-E16DBD09AFA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{EF95AE28-5A99-4DB6-9D61-E16DBD09AFA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDK", "src\SDK\SDK.csproj", "{389691FB-FCA0-439C-8725-29C2BBE69F91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDK", "src\SDK\SDK.csproj", "{389691FB-FCA0-439C-8725-29C2BBE69F91}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7A622F18-9B54-41B4-A928-D1371123C18D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "tests\UnitTests\UnitTests.csproj", "{08EB3972-290D-43CC-BB06-5A7E7583B738}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "tests\UnitTests\UnitTests.csproj", "{08EB3972-290D-43CC-BB06-5A7E7583B738}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "arch", "arch", "{873C4A8F-F824-42C4-BA8B-1A7B17390602}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitignore = .gitignore
+		docker-compose.yml = docker-compose.yml
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +35,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{85C0787E-E3A2-4E0D-BA95-FB056F07971C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -105,6 +110,9 @@ Global
 		{08EB3972-290D-43CC-BB06-5A7E7583B738}.Release|x86.ActiveCfg = Release|Any CPU
 		{08EB3972-290D-43CC-BB06-5A7E7583B738}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{85C0787E-E3A2-4E0D-BA95-FB056F07971C} = {BDADBF43-A6EF-46A9-9C10-088EA167C936}
 		{388A27B3-05C4-4B55-8447-8A0E0BD04D28} = {BDADBF43-A6EF-46A9-9C10-088EA167C936}
@@ -112,5 +120,8 @@ Global
 		{EF95AE28-5A99-4DB6-9D61-E16DBD09AFA8} = {BDADBF43-A6EF-46A9-9C10-088EA167C936}
 		{389691FB-FCA0-439C-8725-29C2BBE69F91} = {BDADBF43-A6EF-46A9-9C10-088EA167C936}
 		{08EB3972-290D-43CC-BB06-5A7E7583B738} = {7A622F18-9B54-41B4-A928-D1371123C18D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1ECF7BAD-1E2B-4750-84E3-298CED7B1D56}
 	EndGlobalSection
 EndGlobal

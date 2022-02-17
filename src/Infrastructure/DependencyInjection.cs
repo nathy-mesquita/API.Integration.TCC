@@ -15,9 +15,10 @@ namespace API.Integration.TCC.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("IntegrationTCC");
-            services.AddDbContext<IntegrationTCCDbContext>(options => options.UseSqlServer(connectionString));
-
+            //var connectionString = configuration.GetConnectionString("IntegrationTCC");
+            //Server=localhost\\SQLEXPRESS;Database=TCC;Trusted_Connection=True;
+            var connection = @"Server=db;Database=master;User=sa;Password=Pa$$w0rd;";
+            services.AddDbContext<IntegrationTCCDbContext>(options => options.UseSqlServer(connection));
             //services.AddDbContext<IntegrationTCCDbContext>(options => options.UseInMemoryDatabase(connectionString));
 
             services.AddScoped<IProjectTCCCommentsRepository, ProjectTCCCommentsRepository>();
