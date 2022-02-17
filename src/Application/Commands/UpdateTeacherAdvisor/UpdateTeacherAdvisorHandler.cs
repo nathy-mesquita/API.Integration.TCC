@@ -27,6 +27,12 @@ namespace API.Integration.TCC.Application.Commands.UpdateTeacherAdvisor
             var projectTCC = await _projectTCCRepository.GetByIdAsync(request.Id);
             _logger.LogInformation($"Buscando um professor pelo ID={request.IdTeacher}");
             var teacherAdvisor = await _teacherRepository.GetByIdAsync(request.IdTeacher);
+            if ((projectTCC is null) || (teacherAdvisor is null))
+            {
+                _logger.LogError($"O {nameof(projectTCC)} está {projectTCC}");
+                _logger.LogError($"O {nameof(teacherAdvisor)} está {teacherAdvisor}");
+                return Unit.Task.Result;
+            }
 
             projectTCC.UpdateTeacher(projectTCC.IdTeacher);
             _logger.LogInformation($"Projeto de TCC com o IdTeacher atualizado");

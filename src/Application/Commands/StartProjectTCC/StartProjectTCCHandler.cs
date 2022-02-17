@@ -23,7 +23,11 @@ namespace API.Integration.TCC.Application.Commands.StartProjectTCC
 
             _logger.LogInformation($"Buscando um projeto pelo ID={request.Id}");
             var projectTCC = await _projectTCCRepository.GetByIdAsync(request.Id);
-
+            if (projectTCC is null)
+            {
+                _logger.LogInformation($"O {nameof(projectTCC)} está {projectTCC}");
+                return Unit.Task.Result;
+            }
             projectTCC.Start();
             _logger.LogInformation($"Projeto de TCC startado");
 

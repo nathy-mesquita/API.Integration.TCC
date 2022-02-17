@@ -22,7 +22,13 @@ namespace API.Integration.TCC.Application.Commands.UpdateComment
             _logger.LogInformation($"Iniciando a atualização de um comentário!");
 
             _logger.LogInformation($"Buscando um comentário pelo ID={request.Id}");
+
             var comment = await _projectTCCCommentsRepository.GetDetailsByIdAsync(request.Id);
+            if (comment is null)
+            {
+                _logger.LogError($"O {nameof(comment)} está {comment}");
+                return Unit.Task.Result;
+            }
 
             comment.Update(comment.Content!);
             _logger.LogInformation($"Comentário atualizado!");

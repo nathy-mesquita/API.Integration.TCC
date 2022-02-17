@@ -23,7 +23,11 @@ namespace API.Integration.TCC.Application.Commands.DeleteComment
 
             _logger.LogInformation($"Buscando um projeto pelo ID={request.Id}");
             var projectTCC = await _projectTCCCommentsRepository.GetDetailsByIdAsync(request.Id);
-
+            if (projectTCC is null)
+            {
+                _logger.LogError($"O {nameof(projectTCC)} está {projectTCC}");
+                return Unit.Task.Result;
+            }
             projectTCC.Delete();
             _logger.LogInformation($"Projeto de TCC deletado!");
 
