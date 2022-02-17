@@ -1,0 +1,776 @@
+{
+	"info": {
+		"_postman_id": "43374c77-f3e2-4597-9201-6f893fbd17be",
+		"name": "API Integration TCC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Project TCC Comments",
+			"item": [
+				{
+					"name": "ProjectTCCComments/{idComments}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{address}}:{{port}}/api/ProjectTCCComments/{{idComments}}",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"ProjectTCCComments",
+								"{{idComments}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProjectTCCComments/{idProject}/project",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{address}}:{{port}}/api/ProjectTCCComments/{{idProject}}/project",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"ProjectTCCComments",
+								"{{idProject}}",
+								"project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProjectTCCComments/{idProject}/project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": \"{{content}}\",\r\n  \"idProjectTCC\": {{idProject}},\r\n  \"idUser\": {{idStudent}}\r\n}"
+						},
+						"url": {
+							"raw": "{{address}}:{{port}}/api/ProjectTCCComments/{{idProject}}/project",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"ProjectTCCComments",
+								"{{idProject}}",
+								"project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProjectTCCComments/{idProject}/project",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{idComments}},\r\n  \"content\": \"{{content}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{address}}:{{port}}/api/ProjectTCCComments/{{idComments}}/project",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"ProjectTCCComments",
+								"{{idComments}}",
+								"project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProjectTCCComments/{idProject}/project",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{address}}:{{port}}/api/ProjectTCCComments/{{idComments}}/project",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"ProjectTCCComments",
+								"{{idComments}}",
+								"project"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Project TCC",
+			"item": [
+				{
+					"name": "ProjectTCC",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{address}}:{{port}}/api/ProjectTCC?query={{queryProject}}",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"ProjectTCC"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "{{queryProject}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProjectTCC",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"{{title}}\",\r\n  \"description\": \"{{description}}\",\r\n  \"idStudent\": {{idStudent}},\r\n  \"defenseForecast\": \"{{defenseForecast}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{address}}:{{port}}/api/ProjectTCC",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"ProjectTCC"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProjectTCC/{idProject}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{address}}:{{port}}/api/ProjectTCC/{{idProject}}",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"ProjectTCC",
+								"{{idProject}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProjectTCC/{idProject}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{idProject}},\r\n  \"title\": \"{{title}}\",\r\n  \"description\": \"{{description}}\",\r\n  \"defenseForecast\": \"{{defenseForecast}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{address}}:{{port}}/api/ProjectTCC/{{idProject}}",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"ProjectTCC",
+								"{{idProject}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProjectTCC/{idProject}",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{address}}:{{port}}/api/ProjectTCC/{{idProject}}",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"ProjectTCC",
+								"{{idProject}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProjectTCC/{idProject}/teacher",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{idProject}},\r\n  \"idTeacher\": {{idTeacher}}\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{address}}:{{port}}/api/ProjectTCC/{{idProject}}/teacher",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"ProjectTCC",
+								"{{idProject}}",
+								"teacher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProjectTCC/{idProject}/start",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{address}}:{{port}}/api/ProjectTCC/{{idProject}}/start",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"ProjectTCC",
+								"{{idProject}}",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProjectTCC/{idProject}/finish",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{address}}:{{port}}/api/ProjectTCC/{{idProject}}/finish",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"ProjectTCC",
+								"{{idProject}}",
+								"finish"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "Student",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{address}}:{{port}}/api/Student?query={{queryStudent}}",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"Student"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "{{queryStudent}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Student/{idStudent}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{address}}:{{port}}/api/Student/{{idStudent}}",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"Student",
+								"{{idStudent}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"emailStudent\", jsonData.email);\r",
+									"postman.setEnvironmentVariable(\"passwordStudent\", jsonData.password);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fullName\": \"{{fullName}}\",\r\n  \"email\": \"{{email}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"course\": \"{{course}}\",\r\n  \"birthDate\": \"{{birthDate}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{address}}:{{port}}/api/Student",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"Student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Student/login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"tokenJWTStudent\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"strictSSL": false,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{emailStudent}}\",\r\n  \"password\": \"{{passwordStudent}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{address}}:{{port}}/api/Student/login",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"Student",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher",
+			"item": [
+				{
+					"name": "Teacher/login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"tokenJWTTeacher\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": {{emailTeacher}},\r\n  \"password\": {{passwordTeacher}}\r\n}"
+						},
+						"url": {
+							"raw": "{{address}}:{{port}}/api/Teacher/login",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"Teacher",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Teacher",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{address}}:{{port}}/api/Teacher?query={{queryTeacher}}",
+							"host": [
+								"{{address}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"Teacher"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "{{queryTeacher}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Teacher/{idTeacher}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenJWTStudent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5005/api/Teacher/{{idTeacher}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"api",
+								"Teacher",
+								"{{idTeacher}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Teacher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"emailTeacher\", jsonData.email);\r",
+									"postman.setEnvironmentVariable(\"passwordTeacher\", jsonData.password);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fullName\": \"{{fullName}}\",\r\n  \"email\": \"{{email}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"birthDate\": \"{{birthDate}}\",\r\n  \"specialty\": \"{{specialty}}\",\r\n  \"subjectsTaught\": \"{{subjectsTaught}}\"\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5005/api/Teacher",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"api",
+								"Teacher"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
