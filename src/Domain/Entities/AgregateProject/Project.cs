@@ -10,7 +10,7 @@ namespace API.Integration.TCC.Domain.Entities.AgregateProject
     {
         public Project()
         {
-            Comments = new List<ProjectComments>();
+            Comments = new List<Comments>();
             Term = new List<Term>();
             Cronograma = new List<Topic>();
         }
@@ -18,7 +18,7 @@ namespace API.Integration.TCC.Domain.Entities.AgregateProject
         public Authors? Authors { get; set; }
         public List<Term>? Term { get; set; }
         public List<Topic>? Cronograma { get; set; }
-        public List<ProjectComments>? Comments { get; set; }
+        public List<Comments>? Comments { get; set; }
 
         public void GerarCronograma(List<Topic> cronograma)
         {

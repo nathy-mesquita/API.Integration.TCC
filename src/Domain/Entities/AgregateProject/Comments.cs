@@ -1,18 +1,16 @@
 using System;
-using API.Integration.TCC.Domain.Entities;
-using API.Integration.TCC.Domain.Entities.Users;
 using API.Integration.TCC.Domain.Enums;
 
 namespace API.Integration.TCC.Domain.Entities.AgregateProject
 {
     /// <summary>
-    /// Value Object - Project Comments
+    /// Value Object - Comments
     /// </summary>
-    public class ProjectComments : BaseEntity
+    public class Comments: BaseEntity
     {
-        public ProjectComments(string? content, 
-                                int idProjectTCC, 
-                                int idUser)
+        public Comments(string? content, 
+                        int idProjectTCC, 
+                        int idUser)
         {
             Content = content;
             IdProjectTCC = idProjectTCC;
@@ -27,10 +25,10 @@ namespace API.Integration.TCC.Domain.Entities.AgregateProject
         public int IdUser { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public CommentStatusEnum Status { get; private set; }
-        public Student? Student { get; private set; }
-        public Teacher? Teacher { get; private set; }
-        
-        //TODO: Retirar esta propriedade de navegação caso não seja mais necessário
+
+        //TODO: Retirar estas propriedades de navegação caso não seja mais necessário
+        //public Student? Student { get; private set; }
+        //public Teacher? Teacher { get; private set; }
         //public ProjectTCC? ProjectTCC { get; private set; }
 
 
