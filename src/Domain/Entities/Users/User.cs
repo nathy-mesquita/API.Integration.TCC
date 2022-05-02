@@ -1,6 +1,6 @@
 using System;
 
-namespace API.Integration.TCC.Domain.Entities
+namespace API.Integration.TCC.Domain.Entities.Users
 {
     public abstract class User : BaseEntity
     {
@@ -22,11 +22,7 @@ namespace API.Integration.TCC.Domain.Entities
         /// </summary>
         /// <value></value>
         public string? Password { get; protected set; }
-        /// <summary>
-        /// Papel do Aluno
-        /// </summary>
-        /// <value></value>
-        public string? Role { get; protected set; }
+        
 
         /// <summary>
         /// Data de Nascimento

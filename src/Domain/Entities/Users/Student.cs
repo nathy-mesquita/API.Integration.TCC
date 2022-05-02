@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using API.Integration.TCC.Domain.Enums;
 
-namespace API.Integration.TCC.Domain.Entities
+namespace API.Integration.TCC.Domain.Entities.Users
 {
     public class Student : User
     {
@@ -9,29 +10,37 @@ namespace API.Integration.TCC.Domain.Entities
         public Student(string? fullName,
                         string? email,
                         string? password,
-                        string? course,
-                        DateTime birthDate)
+                        DateTime birthDate,
+                        string? role,
+                        CourseEnum course)
         {
             FullName = fullName;
             Email = email;
             Password = password;
-            Course = course;
             BirthDate = birthDate;
+            Role = role;
+            Course = course;
 
-            Role = "IntegrationTCC_Student";
             Active = true;
             CreatedAt = DateTime.Now;
             Enrollment = Guid.NewGuid();
 
-            Comments = new List<ProjectTCCComments>();
+            //TODO: Retirar esta propriedade de navegação caso não seja mais necessário
+            //Comments = new List<ProjectTCCComments>();
             //OwnedProject = new ProjectTCC();
         }
+
+        /// <summary>
+        /// Papel do Aluno
+        /// </summary>
+        /// <value></value>
+        public string? Role { get; private set; }
 
         /// <summary>
         /// Curso matriculado
         /// </summary>
         /// <value></value>
-        public string? Course { get; private set; }
+        public CourseEnum Course { get; private set; }
 
         /// <summary>
         /// Matrícula do aluno
@@ -39,17 +48,19 @@ namespace API.Integration.TCC.Domain.Entities
         /// <value></value>
         public Guid Enrollment { get; private set; }
 
+        //TODO: Retirar esta propriedade de navegação caso não seja mais necessário
         /// <summary>
         /// Comentários
         /// </summary>
         /// <value></value>
-        public List<ProjectTCCComments>? Comments { get; set; }
+        //public List<ProjectTCCComments>? Comments { get; set; }
 
-
+        //TODO: Retirar esta propriedade de navegação caso não seja mais necessário
         /// <summary>
         /// Dono do Projeto
         /// </summary>
         /// <value></value>
-        public ProjectTCC? OwnedProject { get; set; }
+        //public Tcc? OwnedProject { get; set; }
+
     }
 }

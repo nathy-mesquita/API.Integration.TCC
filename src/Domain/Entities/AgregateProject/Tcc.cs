@@ -1,24 +1,24 @@
-using PI.Integration.TCC.Domain.Enums;
 using System;
-using System.Collections.Generic;
+using API.Integration.TCC.Domain.Entities;
+using API.Integration.TCC.Domain.Enums;
 
-namespace API.Integration.TCC.Domain.Entities
+namespace API.Integration.TCC.Domain.Entities.AgregateProject
 {
-    public class ProjectTCC : BaseEntity
+    /// <summary>
+    /// Value Objetc - TCC
+    /// </summary>
+    public class Tcc : BaseEntity
     {
-        public ProjectTCC(string? title,
-                            string? description,
-                            int idStudent,
-                            DateTime defenseForecast)
+        public Tcc(string? title, 
+                    string? description, 
+                    DateTime defenseForecast)
         {
             Title = title;
             Description = description;
-            IdStudent = idStudent;
             DefenseForecast = defenseForecast;
 
             CreatedAt = DateTime.Now;
             Status = ProjectStatusEnum.Created;
-            Comments = new List<ProjectTCCComments>();
         }
 
         /// <summary>
@@ -32,30 +32,6 @@ namespace API.Integration.TCC.Domain.Entities
         /// </summary>
         /// <value></value>
         public string? Description { get; private set; }
-
-        /// <summary>
-        /// Id do Aluno
-        /// </summary>
-        /// <value></value>
-        public int IdStudent { get; set; }
-
-        /// <summary>
-        /// Aluno
-        /// </summary>
-        /// <value></value>
-        public Student? Student { get; set; }
-
-        /// <summary>
-        /// Id do Professor
-        /// </summary>
-        /// <value></value>
-        public int IdTeacher { get; private set; }
-
-        /// <summary>
-        /// Professor
-        /// </summary>
-        /// <value></value>
-        public Teacher? Teacher { get; private set; }
 
         /// <summary>
         /// Previsão de Defesa
@@ -86,12 +62,6 @@ namespace API.Integration.TCC.Domain.Entities
         /// </summary>
         /// <value></value>
         public ProjectStatusEnum Status { get; private set; }
-
-        /// <summary>
-        /// Comentários
-        /// </summary>
-        /// <value></value>
-        public List<ProjectTCCComments> Comments { get; private set; }
 
         public void Cancel()
         {
@@ -125,13 +95,5 @@ namespace API.Integration.TCC.Domain.Entities
                 DefenseForecast = defenseForecast;
             }
         }
-        public void UpdateTeacher(int idTeacher)
-        {
-            if (Status == ProjectStatusEnum.Created || Status == ProjectStatusEnum.InProgress)
-            {
-                IdTeacher = idTeacher;
-            }
-        }
-
     }
 }

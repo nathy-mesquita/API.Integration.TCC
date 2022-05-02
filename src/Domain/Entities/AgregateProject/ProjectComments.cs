@@ -1,13 +1,18 @@
-using API.Integration.TCC.Domain.Enums;
 using System;
+using API.Integration.TCC.Domain.Entities;
+using API.Integration.TCC.Domain.Entities.Users;
+using API.Integration.TCC.Domain.Enums;
 
-namespace API.Integration.TCC.Domain.Entities
+namespace API.Integration.TCC.Domain.Entities.AgregateProject
 {
-    public class ProjectTCCComments : BaseEntity
+    /// <summary>
+    /// Value Object - Project Comments
+    /// </summary>
+    public class ProjectComments : BaseEntity
     {
-        public ProjectTCCComments(string? content,
-                                    int idProjectTCC,
-                                    int idUser)
+        public ProjectComments(string? content, 
+                                int idProjectTCC, 
+                                int idUser)
         {
             Content = content;
             IdProjectTCC = idProjectTCC;
@@ -24,7 +29,9 @@ namespace API.Integration.TCC.Domain.Entities
         public CommentStatusEnum Status { get; private set; }
         public Student? Student { get; private set; }
         public Teacher? Teacher { get; private set; }
-        public ProjectTCC? ProjectTCC { get; private set; }
+        
+        //TODO: Retirar esta propriedade de navegação caso não seja mais necessário
+        //public ProjectTCC? ProjectTCC { get; private set; }
 
 
         public void Update(string content)

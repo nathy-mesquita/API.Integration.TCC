@@ -57,7 +57,6 @@ namespace API.Integration.TCC.WebAP.Controllers
         /// <summary>
         /// Realiza um comentário no projeto
         /// </summary>
-        /// <param name="id">Id do projeto</param>
         /// <param name="command">Conteúdo do comentário</param>
         /// <returns></returns>
         [HttpPost("{id}/project")]

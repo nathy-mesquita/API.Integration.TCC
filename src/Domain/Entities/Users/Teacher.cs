@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace API.Integration.TCC.Domain.Entities
+namespace API.Integration.TCC.Domain.Entities.Users
 {
     public class Teacher : User
     {
@@ -9,6 +9,7 @@ namespace API.Integration.TCC.Domain.Entities
                         string? email,
                         string? password,
                         DateTime birthDate,
+                        string? role,
                         string? specialty,
                         string? subjectsTaught)
         {
@@ -16,17 +17,24 @@ namespace API.Integration.TCC.Domain.Entities
             Email = email;
             Password = password;
             BirthDate = birthDate;
+            Role = role;
             Specialty = specialty;
             SubjectsTaught = subjectsTaught;
 
-            Role = "IntegrationTCC_Teacher";
             Active = true;
             CreatedAt = DateTime.Now;
             Advisor = false;
 
-            Comments = new List<ProjectTCCComments>();
-            AdvisorProjects = new List<ProjectTCC>();
+            //TODO: Retirar esta propriedade de navegação caso não seja mais necessário
+            //Comments = new List<ProjectTCCComments>();
+            //AdvisorProjects = new List<Tcc>();
         }
+        /// <summary>
+        /// Papel do Professor
+        /// </summary>
+        /// <value></value>
+        public string? Role { get; private set; }
+
         /// <summary>
         /// Se é Orientador
         /// </summary>
@@ -45,17 +53,19 @@ namespace API.Integration.TCC.Domain.Entities
         /// <value></value>
         public string? SubjectsTaught { get; private set; }
 
+        //TODO: Retirar esta propriedade de navegação caso não seja mais necessário
         /// <summary>
         /// Comentários
         /// </summary>
         /// <value></value>
-        public List<ProjectTCCComments> Comments { get; private set; }
+        //public List<ProjectTCCComments> Comments { get; private set; }
 
+        //TODO: Retirar esta propriedade de navegação caso não seja mais necessário
         /// <summary>
         /// Orientador do Projeto
         /// </summary>
         /// <value></value>
-        public List<ProjectTCC> AdvisorProjects { get; private set; }
+        //public List<Tcc> AdvisorProjects { get; private set; }
 
         public void UpdateTeacherAdvisor()
         {

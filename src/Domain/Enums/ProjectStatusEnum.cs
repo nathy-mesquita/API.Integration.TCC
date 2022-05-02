@@ -1,4 +1,4 @@
-namespace PI.Integration.TCC.Domain.Enums
+namespace API.Integration.TCC.Domain.Enums
 {
     public enum ProjectStatusEnum
     {

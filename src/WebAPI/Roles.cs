@@ -5,5 +5,6 @@ namespace API.Integration.TCC.WebAP
         public const string Administrador = "IntegrationTCC_Admin";
         public const string Student = "IntegrationTCC_Student";
         public const string Teacher = "IntegrationTCC_Teacher";
+        public const string Coordinator = "IntegrationTCC_Coordinator";
     }
 }
