@@ -9,8 +9,8 @@ namespace API.Integration.TCC.Domain.Entities.AgregateProject
     /// </summary>
     public class Tcc : BaseEntity
     {
-        public Tcc(string? title, 
-                    string? description, 
+        public Tcc(string title, 
+                    string description, 
                     DateTime defenseForecast)
         {
             Title = title;
@@ -25,13 +25,13 @@ namespace API.Integration.TCC.Domain.Entities.AgregateProject
         /// Título
         /// </summary>
         /// <value></value>
-        public string? Title { get; private set; }
+        public string Title { get; private set; }
 
         /// <summary>
         /// Descrição
         /// </summary>
         /// <value></value>
-        public string? Description { get; private set; }
+        public string Description { get; private set; }
 
         /// <summary>
         /// Previsão de Defesa

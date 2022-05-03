@@ -10,9 +10,9 @@ namespace API.Integration.TCC.Domain.Entities.AgregateProject
     /// </summary>
     public class Term : BaseEntity
     {
-        public Term(string? content,
-                    int emittedBy,
-                    int idProjectTCC)
+        public Term(string content,
+                    Student emittedBy,
+                    Tcc idProjectTCC)
         {
             Content = content;
             EmittedBy = emittedBy;
@@ -26,7 +26,19 @@ namespace API.Integration.TCC.Domain.Entities.AgregateProject
         /// Conteúdo do termo
         /// </summary>
         /// <value></value>
-        public string? Content { get; private set; }
+        public string Content { get; private set; }
+
+        /// <summary>
+        /// Emitido por <see cref="Student"/>
+        /// </summary>
+        /// <value></value>
+        public Student EmittedBy { get; private set; }
+
+        /// <summary>
+        /// Projeto de TCC
+        /// </summary>
+        /// <value></value>
+        public Tcc IdProjectTCC { get; private set; }
 
         /// <summary>
         /// Criado em 
@@ -35,46 +47,16 @@ namespace API.Integration.TCC.Domain.Entities.AgregateProject
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
-        /// Emitido por (Aluno)
+        /// Aceito por <see cref="Teacher"/> Orientador
         /// </summary>
         /// <value></value>
-        public int EmittedBy { get; private set; }
+        public Teacher? AcceptedBy { get; private set; }
 
         /// <summary>
-        /// Aluno que emite o termo
+        /// Aprovavo por <see cref="Coordinator"/>
         /// </summary>
         /// <value></value>
-        public Student? Student { get; private set; }
-
-        /// <summary>
-        /// Aceito por (Professor Orientador)
-        /// </summary>
-        /// <value></value>
-        public int AcceptedBy { get; private set; }
-        
-        /// <summary>
-        /// Professor que aceita o termo
-        /// </summary>
-        /// <value></value>
-        public Teacher? Teacher { get; private set; }
-
-        /// <summary>
-        /// Aprovavo por (Coordenador)
-        /// </summary>
-        /// <value></value>
-        public int ApprovedBy { get; private set; }
-
-        /// <summary>
-        /// Coordenador que aprova o termo
-        /// </summary>
-        /// <value></value>
-        public Coordinator? Coordinator { get; private set; }
-
-        /// <summary>
-        /// Projeto de TCC
-        /// </summary>
-        /// <value></value>
-        public int IdProjectTCC { get; private set; }
+        public Coordinator? ApprovedBy { get; private set; }
 
         /// <summary>
         /// Projeto de TCC
@@ -88,7 +70,7 @@ namespace API.Integration.TCC.Domain.Entities.AgregateProject
         /// <value></value>
         public TermStatusEnum Status { get; private set; }
 
-        public void AcceptTerm(int acceptedBy)
+        public void AcceptTerm(Teacher acceptedBy)
         {
             if(Status == TermStatusEnum.Emitted)
             {
@@ -97,7 +79,7 @@ namespace API.Integration.TCC.Domain.Entities.AgregateProject
             }
         }
 
-        public void ApproveTerm(int approvedBy)
+        public void ApproveTerm(Coordinator approvedBy)
         {
             if(Status == TermStatusEnum.Accepted)
             {

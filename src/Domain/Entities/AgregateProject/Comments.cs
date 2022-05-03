@@ -8,9 +8,9 @@ namespace API.Integration.TCC.Domain.Entities.AgregateProject
     /// </summary>
     public class Comments: BaseEntity
     {
-        public Comments(string? content, 
-                        int idProjectTCC, 
-                        int idUser)
+        public Comments(string content, 
+                        Tcc idProjectTCC,
+                        Authors idUser)
         {
             Content = content;
             IdProjectTCC = idProjectTCC;
@@ -20,16 +20,30 @@ namespace API.Integration.TCC.Domain.Entities.AgregateProject
             Status = CommentStatusEnum.Created;
         }
 
-        public string? Content { get; private set; }
-        public int IdProjectTCC { get; private set; }
-        public int IdUser { get; private set; }
-        public DateTime CreatedAt { get; private set; }
-        public CommentStatusEnum Status { get; private set; }
+        /// <summary>
+        /// Conteúdo
+        /// </summary>
+        public string Content { get; private set; }
 
-        //TODO: Retirar estas propriedades de navegação caso não seja mais necessário
-        //public Student? Student { get; private set; }
-        //public Teacher? Teacher { get; private set; }
-        //public ProjectTCC? ProjectTCC { get; private set; }
+        /// <summary>
+        /// Identificador do projeto de <see cref="Tcc"/>
+        /// </summary>
+        public Tcc IdProjectTCC { get; private set; }
+
+        /// <summary>
+        /// Identificador do autor do comentário <see cref="Authors.IdStudent"/> ou <see cref="Authors.IdTeacher"/>
+        /// </summary>
+        public Authors IdUser { get; private set; }
+
+        /// <summary>
+        /// Criado em 
+        /// </summary>
+        public DateTime CreatedAt { get; private set; }
+
+        /// <summary>
+        /// Status do comentário <see cref="CommentStatusEnum.Created"/> ou <see cref="CommentStatusEnum.Deleted"/>
+        /// </summary>
+        public CommentStatusEnum Status { get; private set; }
 
 
         public void Update(string content)
