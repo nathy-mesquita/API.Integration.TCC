@@ -34,4 +34,8 @@
     <None Remove="System.Security.Cryptography.Csp" />
     <None Remove="System.Security.Cryptography.Algorithms" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Persistence\Models\" />
+  </ItemGroup>
 </Project>

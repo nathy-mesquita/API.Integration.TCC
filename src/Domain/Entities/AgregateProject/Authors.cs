@@ -8,7 +8,7 @@ namespace API.Integration.TCC.Domain.Entities.AgregateProject
     /// </summary>
     public class Authors : BaseEntity
     {
-        public Authors(int idStudent)
+        public Authors(Student idStudent)
         {
             IdStudent = idStudent;
         }
@@ -17,29 +17,16 @@ namespace API.Integration.TCC.Domain.Entities.AgregateProject
         /// Id do Aluno
         /// </summary>
         /// <value></value>
-        public int IdStudent { get; set; }
-
-        /// <summary>
-        /// Aluno
-        /// </summary>
-        /// <value></value>
-        public Student? Student { get; set; }
+        public Student IdStudent { get; private set; }
 
         /// <summary>
         /// Id do Professor
         /// </summary>
         /// <value></value>
-        public int IdTeacher { get; private set; }
+        public Teacher? IdTeacher { get; private set; }
 
-        /// <summary>
-        /// Professor
-        /// </summary>
-        /// <value></value>
-        public Teacher? Teacher { get; private set; }
 
-        public void UpdateTeacher(int idTeacher)
-        {
-            IdTeacher = idTeacher;
-        }
+        public void SetTeacher(Teacher idTeacher) 
+            => IdTeacher = idTeacher;
     }
 }

@@ -5,9 +5,9 @@ namespace API.Integration.TCC.Domain.Entities.AgregateProject
     /// <summary>
     /// Entity - Topic
     /// </summary>
-    public class Topic
+    public class Topic : BaseEntity
     {
-        public Topic(string? title, DateTime deadline)
+        public Topic(string title, DateTime deadline)
         {
             Title = title;
             Deadline = deadline;
@@ -17,7 +17,8 @@ namespace API.Integration.TCC.Domain.Entities.AgregateProject
         /// Tópico do TCC
         /// </summary>
         /// <value></value>
-        public string? Title { get; private set; }
+        public string Title { get; private set; }
+
         /// <summary>
         /// Prazo de entrega para do tópico
         /// </summary>

@@ -5,36 +5,35 @@ namespace API.Integration.TCC.Domain.Entities.Users
 {
     public class Coordinator : User
     {
-        public Coordinator(string? fullName,
-                        string? email,
-                        string? password,
+        public Coordinator(string fullName,
+                        string email,
+                        string password,
                         DateTime birthDate,
-                        string? role,
-                        CourseEnum course)
+                        CourseEnum course,
+                        string role)
         {
             FullName = fullName;
             Email = email;
             Password = password;
             BirthDate = birthDate;
-            Role = role;
             Course = course;
+            Role = role;
 
             ConfimaTermo = false;
             Active = true;
             CreatedAt = DateTime.Now;
         }
-
-        /// <summary>
-        /// Papel do Coordenadors
-        /// </summary>
-        /// <value></value>
-        public string? Role { get; private set; }
-
         /// <summary>
         /// Curso que coordena
         /// </summary>
         /// <value></value>
         public CourseEnum Course { get; private set; }
+
+        /// <summary>
+        /// Papel do Coordenadors
+        /// </summary>
+        /// <value></value>
+        public string Role { get; private set; }
 
         /// <summary>
         /// Confirma o termo de um projeto de tcc

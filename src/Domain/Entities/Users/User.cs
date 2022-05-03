@@ -4,7 +4,7 @@ namespace API.Integration.TCC.Domain.Entities.Users
 {
     public abstract class User : BaseEntity
     {
-
+        //TODO: Como retirar os "?", pois as classes que herdam tem cmo parâmetros obrigatórios esses valores
         /// <summary>
         /// Nome Completo
         /// </summary>
